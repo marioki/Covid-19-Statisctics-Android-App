@@ -6,12 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"
-        android:padding="4dp"
-        android:clipToPadding="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/searchView"
+        android:layout_marginTop="0dp"
+        android:clipToPadding="false"
+        android:padding="4dp"
         tools:listitem="@layout/country_item_layout">
 
     </androidx.recyclerview.widget.RecyclerView>

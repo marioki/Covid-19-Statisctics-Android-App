@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,28 +25,47 @@ public class MainActivity extends AppCompatActivity {
     private TextView mainTextView;
     private RecyclerView recycler_view;
     private MyAdapter myadapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recycler_view = findViewById(R.id.recycler_view);
+        SearchView country_search = findViewById(R.id.searchView);
+        SearchView.OnQueryTextListener object = new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                myadapter.getFilter().filter(newText);
+                return false;
+            }
+        };
+
+        country_search.setOnQueryTextListener(object);
+
+
+        recycler_view = findViewById(R.id.recycler_view);
 
         List<CountryItem> countries = getCountries();
 
+
     }
 
-    private void setAdapter(List<CountryX> countries){
+    private void setAdapter(List<CountryX> countries) {
         myadapter = new MyAdapter(countries);
         recycler_view.setAdapter(myadapter);
-        recycler_view.setLayoutManager( new LinearLayoutManager(this));
+        recycler_view.setLayoutManager(new LinearLayoutManager(this));
         recycler_view.setHasFixedSize(true);
 
     }
 
 
-    private List<CountryItem> getCountries(){
+    private List<CountryItem> getCountries() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.covid19api.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -56,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
         //Call<List<CountryItem>> call = myCovApi.getCountries();
         Call<CountrySummary> call = myCovApi.getSummary();
 
-        call.enqueue(new Callback<CountrySummary>(){
+        call.enqueue(new Callback<CountrySummary>() {
 
             @Override
             public void onResponse(Call<CountrySummary> call, Response<CountrySummary> response) {
-                if (!response.isSuccessful()){
+                if (!response.isSuccessful()) {
                     mainTextView.setText("Codigo" + response.code());
                     return;
                 }
