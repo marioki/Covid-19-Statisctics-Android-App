@@ -1,0 +1,91 @@
+package com.mariokirven.covidscore;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.os.Bundle;
+import android.widget.TextView;
+
+import java.util.List;
+
+import Interfaz.CovApi;
+import Model.CountryItem;
+import Model.CountrySummary;
+import Model.CountryX;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class MainActivity extends AppCompatActivity {
+    private TextView mainTextView;
+    private RecyclerView recycler_view;
+    private MyAdapter myadapter;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        recycler_view = findViewById(R.id.recycler_view);
+
+
+        List<CountryItem> countries = getCountries();
+
+    }
+
+    private void setAdapter(List<CountryX> countries){
+        myadapter = new MyAdapter(countries);
+        recycler_view.setAdapter(myadapter);
+        recycler_view.setLayoutManager( new LinearLayoutManager(this));
+        recycler_view.setHasFixedSize(true);
+
+    }
+
+
+    private List<CountryItem> getCountries(){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.covid19api.com/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        CovApi myCovApi = retrofit.create(CovApi.class);
+
+        //Call<List<CountryItem>> call = myCovApi.getCountries();
+        Call<CountrySummary> call = myCovApi.getSummary();
+
+        call.enqueue(new Callback<CountrySummary>(){
+
+            @Override
+            public void onResponse(Call<CountrySummary> call, Response<CountrySummary> response) {
+                if (!response.isSuccessful()){
+                    mainTextView.setText("Codigo" + response.code());
+                    return;
+                }
+
+                //List<CountryItem> myCountryList = response.body();
+                CountrySummary mySummary = response.body();
+                List<CountryX> myCountryList = mySummary.getCountries();
+                setAdapter(myCountryList);
+
+//                for(CountryItem countryItem: myCountryList){
+//                    String content = "";
+//                    content += "Country: " + countryItem.getCountry() + "\n";
+//                    content += "Slug: " + countryItem.getSlug()+ "\n";
+//                    content += "ISO2: " + countryItem.getISO2()+ "\n\n ";
+//                    mainTextView.append(content);
+//                }
+                //mainTextView.setText(myCountryList.toString());
+            }
+
+            @Override
+            public void onFailure(Call<CountrySummary> call, Throwable t) {
+                mainTextView.setText(t.getMessage());
+            }
+        });
+
+        return null;
+    }
+}
