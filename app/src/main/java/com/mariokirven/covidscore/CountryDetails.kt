@@ -1,8 +1,10 @@
 package com.mariokirven.covidscore
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country_details.*
+
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class CountryDetails : AppCompatActivity() {
@@ -10,6 +12,7 @@ class CountryDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_details)
+
 
 
         //Get Country Data From Main Activity
@@ -25,6 +28,8 @@ class CountryDetails : AppCompatActivity() {
         val date:String = intent.getStringExtra("date")
 
         //country_flag_imgView
+        getCountryFlag(countryCode)
+
 
         country_name_textView.text = countryName
         country_code_textView.text = countryCode
@@ -38,6 +43,16 @@ class CountryDetails : AppCompatActivity() {
         new_recovered_textView.text = newRecovered
         total_recovered_textView.text = totalRecovered
 
+
+    }
+
+    private fun getCountryFlag(countryCode:String) {
+        val imageUrl = "https://www.countryflags.io/$countryCode/flat/64.png"
+
+        //Loading image using Picasso
+
+        //Loading image using Picasso
+        Picasso.get().load(imageUrl).into(country_flag_imgView)
 
     }
 

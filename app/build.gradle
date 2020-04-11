@@ -46,6 +46,9 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 
 }
 repositories {

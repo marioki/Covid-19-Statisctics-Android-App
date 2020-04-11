@@ -14,4 +14,5 @@ public interface CovApi {
     @GET("summary")
     Call<CountrySummary> getSummary();
 
+
 }
