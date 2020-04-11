@@ -87,79 +87,79 @@
             android:text="..."
             android:textColor="@android:color/black"
             android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_4"
-            android:text="NewDeaths: "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_5_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_5"
-            android:layout_toEndOf="@id/text_view_5"
-            android:text="..."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_5"
-            android:text="TotalDeaths: "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_6_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_6"
-            android:layout_toEndOf="@id/text_view_6"
-            android:text="..."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_6"
-            android:text="NewRecovered: "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_7_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_7"
-            android:layout_toEndOf="@id/text_view_7"
-            android:text="..."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_7"
-            android:text="TotalRecovered: "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_8_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_8"
-            android:layout_toEndOf="@id/text_view_8"
-            android:text="..."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
+<!--        <TextView-->
+<!--        android:id="@+id/text_view_5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/text_view_4"-->
+<!--        android:text="NewDeaths: "-->
+<!--        android:textColor="@android:color/black"-->
+<!--        android:textSize="14sp" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/text_view_5_info"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBaseline="@id/text_view_5"-->
+<!--                android:layout_toEndOf="@id/text_view_5"-->
+<!--                android:text="..."-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="14sp" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/text_view_6"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/text_view_5"-->
+<!--                android:text="TotalDeaths: "-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="14sp" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/text_view_6_info"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignBaseline="@id/text_view_6"-->
+<!--                android:layout_toEndOf="@id/text_view_6"-->
+<!--                android:text="..."-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="14sp" />-->
+<!--            <TextView-->
+<!--                android:id="@+id/text_view_7"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/text_view_6"-->
+<!--                android:text="NewRecovered: "-->
+<!--                android:textColor="@android:color/black"-->
+<!--                android:textSize="14sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/text_view_7_info"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBaseline="@id/text_view_7"-->
+<!--            android:layout_toEndOf="@id/text_view_7"-->
+<!--            android:text="..."-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="14sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/text_view_8"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/text_view_7"-->
+<!--            android:text="TotalRecovered: "-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="14sp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/text_view_8_info"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBaseline="@id/text_view_8"-->
+<!--            android:layout_toEndOf="@id/text_view_8"-->
+<!--            android:text="..."-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="14sp" />-->
         <TextView
             android:id="@+id/text_view_9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_8"
+            android:layout_below="@id/text_view_4"
             android:text="Date: "
             android:textColor="@android:color/black"
             android:textSize="14sp" />

@@ -86,10 +86,10 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
         holder.textView2.text = currentItem.countryCode
         holder.textView3.text = currentItem.newConfirmed.toString()
         holder.textView4.text = currentItem.totalConfirmed.toString()
-        holder.textView5.text = currentItem.newDeaths.toString()
-        holder.textView6.text = currentItem.totalDeaths.toString()
-        holder.textView7.text = currentItem.newRecovered.toString()
-        holder.textView8.text = currentItem.totalRecovered.toString()
+//        holder.textView5.text = currentItem.newDeaths.toString()
+//        holder.textView6.text = currentItem.totalDeaths.toString()
+//        holder.textView7.text = currentItem.newRecovered.toString()
+//        holder.textView8.text = currentItem.totalRecovered.toString()
         holder.textView9.text = currentItem.date
 
         //Detectar el click en el item
@@ -160,10 +160,10 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
         val textView2: TextView = itemView.text_view_2_info
         val textView3: TextView = itemView.text_view_3_info
         val textView4: TextView = itemView.text_view_4_info
-        val textView5: TextView = itemView.text_view_5_info
-        val textView6: TextView = itemView.text_view_6_info
-        val textView7: TextView = itemView.text_view_7_info
-        val textView8: TextView = itemView.text_view_8_info
+//        val textView5: TextView = itemView.text_view_5_info
+//        val textView6: TextView = itemView.text_view_6_info
+//        val textView7: TextView = itemView.text_view_7_info
+//        val textView8: TextView = itemView.text_view_8_info
         val textView9: TextView = itemView.text_view_9_info
 
 
