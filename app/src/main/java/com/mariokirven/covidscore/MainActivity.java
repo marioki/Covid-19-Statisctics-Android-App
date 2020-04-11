@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
 
         CovApi myCovApi = retrofit.create(CovApi.class);
 
-        //Call<List<CountryItem>> call = myCovApi.getCountries();
         Call<CountrySummary> call = myCovApi.getSummary();
 
         call.enqueue(new Callback<CountrySummary>() {
@@ -86,19 +85,11 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                //List<CountryItem> myCountryList = response.body();
                 CountrySummary mySummary = response.body();
                 List<CountryX> myCountryList = mySummary.getCountries();
                 setAdapter(myCountryList);
 
-//                for(CountryItem countryItem: myCountryList){
-//                    String content = "";
-//                    content += "Country: " + countryItem.getCountry() + "\n";
-//                    content += "Slug: " + countryItem.getSlug()+ "\n";
-//                    content += "ISO2: " + countryItem.getISO2()+ "\n\n ";
-//                    mainTextView.append(content);
-//                }
-                //mainTextView.setText(myCountryList.toString());
+//
             }
 
             @Override

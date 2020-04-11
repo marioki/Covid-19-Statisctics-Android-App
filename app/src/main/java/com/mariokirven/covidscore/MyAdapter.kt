@@ -97,7 +97,19 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
             Toast.makeText(holder.itemView.context, "Selected: ${currentItem.slug}", Toast.LENGTH_LONG).show()
-            goToCountryDetails(currentItem.slug, context)
+
+
+            goToCountryDetails(context
+                    , currentItem.slug
+                    , currentItem.country
+                    , currentItem.countryCode
+                    , currentItem.newConfirmed.toString()
+                    , currentItem.totalConfirmed.toString()
+                    , currentItem.newDeaths.toString()
+                    , currentItem.totalDeaths.toString()
+                    , currentItem.newRecovered.toString()
+                    , currentItem.totalRecovered.toString()
+                    , currentItem.date)
 
 
         }
@@ -105,8 +117,31 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
 
     }// End Of On Bind View Holder
 
-    private fun goToCountryDetails(slug: String, context: Context) {
-        val myIntent: Intent = Intent(context, CountryDetails::class.java)
+    private fun goToCountryDetails(context: Context
+                                   , slug: String
+                                   , country: String
+                                   , countryCode:String
+                                   , newConfirmed: String
+                                   , totalConfirmed : String
+                                   , newDeaths: String
+                                   , totalDeath: String
+                                   , newRecovered:String
+                                   , totalRecovered:String
+                                   , date: String)
+
+    {
+        val myIntent: Intent = Intent(context, CountryDetails::class.java).apply {
+            putExtra("CountrySlug", slug)
+            putExtra("CountryName", country)
+            putExtra("CountryCode", countryCode)
+            putExtra("newConfirmed", newConfirmed)
+            putExtra("totalConfirmed", totalConfirmed)
+            putExtra("newDeaths", newDeaths)
+            putExtra("totalDeath", totalDeath)
+            putExtra("newRecovered", newRecovered)
+            putExtra("totalRecovered", totalRecovered)
+            putExtra("date", date)
+        }
         context.startActivity(myIntent)
 
     }
