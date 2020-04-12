@@ -14,18 +14,17 @@ class CountryDetails : AppCompatActivity() {
         setContentView(R.layout.activity_country_details)
 
 
-
         //Get Country Data From Main Activity
-        val countryName:String = intent.getStringExtra("CountryName")
-        val countrySlug:String = intent.getStringExtra("CountrySlug")
-        val countryCode:String = intent.getStringExtra("CountryCode")
-        val newConfirmed:String = intent.getStringExtra("newConfirmed")
-        val totalConfirmed:String = intent.getStringExtra("totalConfirmed")
-        val newDeaths:String = intent.getStringExtra("newDeaths")
-        val totalDeaths:String = intent.getStringExtra("totalDeath")
-        val newRecovered:String = intent.getStringExtra("newRecovered")
-        val totalRecovered:String = intent.getStringExtra("totalRecovered")
-        val date:String = intent.getStringExtra("date")
+        val countryName: String = intent.getStringExtra("CountryName")
+        val countrySlug: String = intent.getStringExtra("CountrySlug")
+        val countryCode: String = intent.getStringExtra("CountryCode")
+        val newConfirmed: String = intent.getStringExtra("newConfirmed")
+        val totalConfirmed: String = intent.getStringExtra("totalConfirmed")
+        val newDeaths: String = intent.getStringExtra("newDeaths")
+        val totalDeaths: String = intent.getStringExtra("totalDeath")
+        val newRecovered: String = intent.getStringExtra("newRecovered")
+        val totalRecovered: String = intent.getStringExtra("totalRecovered")
+        val date: String = intent.getStringExtra("date")
 
         //country_flag_imgView
         getCountryFlag(countryCode)
@@ -46,15 +45,24 @@ class CountryDetails : AppCompatActivity() {
 
     }
 
-    private fun getCountryFlag(countryCode:String) {
+    private fun getCountryFlag(countryCode: String) {
         val imageUrl = "https://www.countryflags.io/$countryCode/flat/64.png"
-
-        //Loading image using Picasso
-
         //Loading image using Picasso
         Picasso.get().load(imageUrl).into(country_flag_imgView)
 
     }
+
+//    private fun getCountryFlag(countryCode:String) {
+//        val imageUrl = "https://www.countryflags.io/$countryCode/flat/64.png"
+//        //Loading image using Picasso
+//        Picasso.get().load(imageUrl).into(country_flag_imgView)
+//
+//        val retrofit = Retrofit.Builder()
+//                .baseUrl("https://restcountries.eu/rest/v2/alpha?codes=$countryCode")
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .build()
+//
+//    }
 
 
 }

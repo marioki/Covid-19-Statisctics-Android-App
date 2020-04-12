@@ -21,17 +21,15 @@
 
     <TextView
         android:id="@+id/country_name_textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:text="TextView"
         android:textSize="36sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/country_flag_imgView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/country_flag_imgView"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Panamá" />
@@ -40,12 +38,12 @@
         android:id="@+id/country_code_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="TextView"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/country_name_textView"
-        app:layout_constraintStart_toStartOf="@+id/country_name_textView"
-        app:layout_constraintTop_toBottomOf="@+id/country_name_textView" />
+        app:layout_constraintEnd_toEndOf="@+id/country_flag_imgView"
+        app:layout_constraintStart_toStartOf="@+id/country_flag_imgView"
+        app:layout_constraintTop_toBottomOf="@+id/country_flag_imgView" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -57,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/country_code_textView">
+        app:layout_constraintTop_toBottomOf="@+id/country_name_textView">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

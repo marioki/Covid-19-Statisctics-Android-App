@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        recycler_view = findViewById(R.id.recycler_view);
+
         SearchView country_search = findViewById(R.id.searchView);
         SearchView.OnQueryTextListener object = new SearchView.OnQueryTextListener() {
             @Override
@@ -50,12 +54,13 @@ public class MainActivity extends AppCompatActivity {
         country_search.setOnQueryTextListener(object);
 
 
-        recycler_view = findViewById(R.id.recycler_view);
 
         List<CountryItem> countries = getCountries();
 
 
     }
+
+
 
     private void setAdapter(List<CountryX> countries) {
         myadapter = new MyAdapter(countries);
