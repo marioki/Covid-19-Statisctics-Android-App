@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_toEndOf="@+id/country_flag_view"
-            android:text="Country: "
+            android:text="@string/country_list_name"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -35,7 +35,7 @@
             android:id="@+id/country_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@+id/country_textView"
             android:text="..."
             android:textColor="@android:color/black"
@@ -51,7 +51,7 @@
             android:layout_marginTop="8dp"
 
             android:layout_toEndOf="@+id/country_flag_view"
-            android:text="TotalConfirmed: "
+            android:text="@string/totalconfirmed_list"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
@@ -60,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/total_confirmed_textView"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/total_confirmed_textView"
             android:text="..."
             android:textColor="@android:color/black"
@@ -73,7 +74,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/country_flag_view"
-            android:text="Date: "
+            android:text="@string/date_list"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
@@ -82,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@id/date_textView"
+            android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/date_textView"
             android:text="..."
             android:textColor="@android:color/black"
@@ -92,7 +94,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
-            />
+            android:contentDescription="@string/country_flag_description" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

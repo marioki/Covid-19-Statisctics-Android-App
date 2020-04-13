@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Covid Score</string>
+    <string name="total_cases">Casos Confirmados:</string>
+    <string name="critical_cases">Casos Críticos:</string>
+    <string name="total_deaths">Defunciones:</string>
+    <string name="total_recovered">Casos Recuperados:</string>
+    <string name="country_code">Código de País</string>
+    <string name="country_flag_description">Bandera</string>
+    <string name="country_list_name">País:</string>
+    <string name="totalconfirmed_list">Casos Confirmados:</string>
+    <string name="date_list">Fecha:</string>
+</resources>

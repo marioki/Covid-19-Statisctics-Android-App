@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Covid Score</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="total_cases">Total Cases:</string>
+    <string name="critical_cases">Critical Cases:</string>
+    <string name="total_deaths">Total Deaths:</string>
+    <string name="total_recovered">Total Recovered:</string>
+    <string name="country_code">Country Code</string>
+    <string name="country_flag_description">Country Flag</string>
+    <string name="country_list_name">Country:</string>
+    <string name="totalconfirmed_list">Total Confirmed:</string>
+    <string name="date_list">Date:</string>
+    <string name="cases_info" translatable="false">...</string>
+    <string name="critical_info" translatable="false">...</string>
+    <string name="total_deaths_info" translatable="false">...</string>
+    <string name="total_recovered_info" translatable="false">...</string>
 </resources>

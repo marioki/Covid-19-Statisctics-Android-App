@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.country_item_layout.view.*
+import java.text.SimpleDateFormat
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -87,6 +88,10 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         holder.date.text = currentItem.updated.toString()
         getCountryFlag(currentItem.countryInfo.iso2.toString(), holder.countryFlag)
 
+        holder.date.text = getActualDate(currentItem.updated).toString()
+
+
+
 
         //Detectar el click en el item
 
@@ -121,6 +126,14 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
 
     }// End Of On Bind View Holder
+
+    private fun getActualDate(miliTime:Long): String {
+        val itemLong = (miliTime / 1000) as Long
+
+        val d = Date(itemLong * 1000L)
+        val itemDateStr: String = SimpleDateFormat("dd-MMM HH:mm").format(d)
+        return itemDateStr
+    }
 
 
     private fun getCountryFlag(countryCode: String, flagView: ImageView) {

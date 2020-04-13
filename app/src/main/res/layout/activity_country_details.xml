@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clipToPadding="false"
     android:padding="8dp"
     tools:context=".CountryDetails">
 
@@ -25,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:text="TextView"
+                android:text="@string/country_code"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/country_flag_imgView"
@@ -38,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
+                android:contentDescription="@string/country_flag_description"
                 android:scaleType="center"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -46,10 +48,11 @@
 
             <TextView
                 android:id="@+id/country_name_textView"
-                android:layout_width="200dp"
+                android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="TextView"
+                android:layout_marginEnd="-8dp"
+                android:text=""
                 android:textSize="34sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +84,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Cases"
+                android:text="@string/total_cases"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -91,7 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="TextView"
+                android:text="@string/cases_info"
                 android:textSize="24sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
                 app:layout_constraintStart_toEndOf="@+id/textView4" />
@@ -101,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Critical Cases"
+                android:text="@string/critical_cases"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -111,7 +114,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="TextView"
+                android:text="@string/critical_info"
                 android:textSize="24sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/criticalCases_textView"
                 app:layout_constraintStart_toEndOf="@+id/criticalCases_textView" />
@@ -142,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="TextView"
+                android:text="@string/total_deaths_info"
                 android:textSize="24sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView"
                 app:layout_constraintStart_toEndOf="@+id/textView" />
@@ -151,7 +154,7 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Deaths"
+                android:text="@string/total_deaths"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -179,7 +182,7 @@
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total Recovered"
+                android:text="@string/total_recovered"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -189,7 +192,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="TextView"
+                android:text="@string/total_recovered_info"
                 android:textSize="24sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
                 app:layout_constraintStart_toEndOf="@+id/textView17" />
