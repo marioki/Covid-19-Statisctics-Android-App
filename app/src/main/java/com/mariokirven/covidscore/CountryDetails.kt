@@ -48,7 +48,7 @@ class CountryDetails : AppCompatActivity() {
         total_confirmed_textView.text = cases
         critical_textView.text = critical
 
-        total_deaths_textView.text = deaths
+        total_deaths_list_textView.text = deaths
 
         total_recovered_textView.text = recovered
 

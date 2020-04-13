@@ -14,4 +14,5 @@
     <string name="critical_info" translatable="false">...</string>
     <string name="total_deaths_info" translatable="false">...</string>
     <string name="total_recovered_info" translatable="false">...</string>
+    <string name="total_deaths_list_info" translatable="false">...</string>
 </resources>

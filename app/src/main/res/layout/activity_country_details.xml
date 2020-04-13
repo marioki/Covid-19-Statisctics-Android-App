@@ -141,7 +141,7 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/total_deaths_textView"
+                android:id="@+id/total_deaths_list_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

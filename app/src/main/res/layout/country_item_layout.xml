@@ -70,12 +70,12 @@
             android:id="@+id/date_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/cases_textView"
+            android:layout_below="@+id/total_deaths_list_textView"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_toEndOf="@+id/country_flag_view"
             android:text="@string/date_list"
-            android:textColor="@android:color/black"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="14sp" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/date_textView"
             android:text="..."
-            android:textColor="@android:color/black"
+            android:textColor="@color/cardview_dark_background"
             android:textSize="14sp" />
 
         <ImageView
@@ -95,6 +95,29 @@
             android:layout_height="50dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="@string/country_flag_description" />
+
+        <TextView
+            android:id="@+id/total_deaths_list_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/total_confirmed_textView"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/country_flag_view"
+            android:text="@string/total_deaths"
+            android:textColor="@android:color/black" />
+
+        <TextView
+            android:id="@+id/deaths_list_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/total_deaths_list_textView"
+            android:layout_marginStart="8dp"
+            android:layout_toEndOf="@+id/total_deaths_list_textView"
+
+
+            android:text="..."
+            android:textColor="@android:color/black" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

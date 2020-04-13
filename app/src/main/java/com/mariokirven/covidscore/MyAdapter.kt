@@ -85,10 +85,12 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
         holder.countryName.text = currentItem.country
         holder.cases.text = currentItem.cases.toString()
-        holder.date.text = currentItem.updated.toString()
+        holder.deaths.text = currentItem.deaths.toString()
+
+        holder.date.text = getActualDate(currentItem.updated)
+
         getCountryFlag(currentItem.countryInfo.iso2.toString(), holder.countryFlag)
 
-        holder.date.text = getActualDate(currentItem.updated).toString()
 
 
 
@@ -201,8 +203,10 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
         val countryName: TextView = itemView.country_name_textView
         val cases: TextView = itemView.cases_textView
+        val deaths: TextView = itemView.deaths_list_info
         val date: TextView = itemView.date_info_textView
         val countryFlag: ImageView = itemView.country_flag_view
+
 
 
     }
