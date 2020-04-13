@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp">
@@ -22,16 +24,20 @@
             android:id="@+id/country_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@+id/country_flag_view"
             android:text="Country: "
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
+
         <TextView
             android:id="@+id/country_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_toEndOf="@+id/country_textView"
             android:text="..."
-            android:layout_toEndOf="@id/country_textView"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -41,9 +47,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/country_name_textView"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+
+            android:layout_toEndOf="@+id/country_flag_view"
             android:text="TotalConfirmed: "
             android:textColor="@android:color/black"
             android:textSize="14sp" />
+
         <TextView
             android:id="@+id/cases_textView"
             android:layout_width="wrap_content"
@@ -59,9 +70,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/cases_textView"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_toEndOf="@+id/country_flag_view"
             android:text="Date: "
             android:textColor="@android:color/black"
             android:textSize="14sp" />
+
         <TextView
             android:id="@+id/date_info_textView"
             android:layout_width="wrap_content"
@@ -71,6 +86,13 @@
             android:text="..."
             android:textColor="@android:color/black"
             android:textSize="14sp" />
+
+        <ImageView
+            android:id="@+id/country_flag_view"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="8dp"
+            />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

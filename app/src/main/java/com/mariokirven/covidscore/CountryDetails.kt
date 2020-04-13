@@ -37,28 +37,16 @@ class CountryDetails : AppCompatActivity() {
         val updated: String = intent.getStringExtra("updated")
 
 
-
-//        if (intent.getStringExtra("countryInfoId") != null) {
-//            val countryInfoId: String = intent.getStringExtra("countryInfoId")
-//        }else val countryInfoId = " "
-//
-//        if (intent.getStringExtra("countryInfoIso2") != null) {
-//            val countryInfoIso2: String = intent.getStringExtra("countryInfoIso2")
-//        }else val countryInfoIso2 = " "
-//
-//        if (intent.getStringExtra("countryInfoIso3") != null) {
-//            val countryInfoIso3: String = intent.getStringExtra("countryInfoIso3")
-//        }else val countryInfoIso3 = " "
-
-
         //country_flag_imgView
-        getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
 
+
+        getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
 
         country_name_textView.text = country
         country_code_textView.text = countryInfoIso2
 
         total_confirmed_textView.text = cases
+        critical_textView.text = critical
 
         total_deaths_textView.text = deaths
 
@@ -73,18 +61,5 @@ class CountryDetails : AppCompatActivity() {
         Picasso.get().load(imageUrl).into(country_flag_imgView)
 
     }
-
-//    private fun getCountryFlag(countryCode:String) {
-//        val imageUrl = "https://www.countryflags.io/$countryCode/flat/64.png"
-//        //Loading image using Picasso
-//        Picasso.get().load(imageUrl).into(country_flag_imgView)
-//
-//        val retrofit = Retrofit.Builder()
-//                .baseUrl("https://restcountries.eu/rest/v2/alpha?codes=$countryCode")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build()
-//
-//    }
-
 
 }

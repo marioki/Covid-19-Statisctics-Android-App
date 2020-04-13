@@ -3,17 +3,18 @@ package com.mariokirven.covidscore
 import Model.CountryItem
 import android.content.Context
 import android.content.Intent
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.country_item_layout.view.*
+
 import java.util.*
 import kotlin.collections.ArrayList
+
 
 class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapter<MyAdapter.ItemViewHolder>(), Filterable {
 
@@ -84,6 +85,8 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         holder.countryName.text = currentItem.country
         holder.cases.text = currentItem.cases.toString()
         holder.date.text = currentItem.updated.toString()
+        getCountryFlag(currentItem.countryInfo.iso2.toString(), holder.countryFlag)
+
 
         //Detectar el click en el item
 
@@ -93,31 +96,40 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
 
             goToCountryDetails(context
-                    ,currentItem.active.toString()
-                    ,currentItem.cases.toString()
-                    ,currentItem.casesPerOneMillion.toString()
-                    ,currentItem.country
-                    ,currentItem.countryInfo.flag
+                    , currentItem.active.toString()
+                    , currentItem.cases.toString()
+                    , currentItem.casesPerOneMillion.toString()
+                    , currentItem.country
+                    , currentItem.countryInfo.flag
                     , currentItem.countryInfo.id.toString()
                     , currentItem.countryInfo.iso2.toString()
                     , currentItem.countryInfo.iso3.toString()
-                    ,currentItem.countryInfo.lat.toString()
-                    ,currentItem.countryInfo.long.toString()
-                    ,currentItem.critical.toString()
-                    ,currentItem.deaths.toString()
-                    ,currentItem.deathsPerOneMillion.toString()
-                    ,currentItem.recovered.toString()
-                    ,currentItem.tests.toString()
-                    ,currentItem.testsPerOneMillion.toString()
-                    ,currentItem.todayCases.toString()
-                    ,currentItem.todayDeaths.toString()
-                    ,currentItem.updated.toString())
+                    , currentItem.countryInfo.lat.toString()
+                    , currentItem.countryInfo.long.toString()
+                    , currentItem.critical.toString()
+                    , currentItem.deaths.toString()
+                    , currentItem.deathsPerOneMillion.toString()
+                    , currentItem.recovered.toString()
+                    , currentItem.tests.toString()
+                    , currentItem.testsPerOneMillion.toString()
+                    , currentItem.todayCases.toString()
+                    , currentItem.todayDeaths.toString()
+                    , currentItem.updated.toString())
 
 
         }
 
 
     }// End Of On Bind View Holder
+
+
+    private fun getCountryFlag(countryCode: String, flagView: ImageView) {
+
+        val imageUrl = "https://www.countryflags.io/$countryCode/flat/64.png"
+        //Loading image using Picasso
+        Picasso.get().load(imageUrl).into(flagView)
+    }
+
 
     private fun goToCountryDetails(context: Context
                                    , active: String
@@ -138,9 +150,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
                                    , testsPerOneMillion: String
                                    , todayCases: String
                                    , todayDeaths: String
-                                   , updated: String)
-
-    {
+                                   , updated: String) {
         val myIntent: Intent = Intent(context, CountryDetails::class.java).apply {
             putExtra("active", active)
             putExtra("cases", cases)
@@ -179,7 +189,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         val countryName: TextView = itemView.country_name_textView
         val cases: TextView = itemView.cases_textView
         val date: TextView = itemView.date_info_textView
-
+        val countryFlag: ImageView = itemView.country_flag_view
 
 
     }

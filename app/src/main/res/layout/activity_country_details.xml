@@ -96,6 +96,26 @@
                 app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
                 app:layout_constraintStart_toEndOf="@+id/textView4" />
 
+            <TextView
+                android:id="@+id/criticalCases_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Critical Cases"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/critical_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="TextView"
+                android:textSize="24sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/criticalCases_textView"
+                app:layout_constraintStart_toEndOf="@+id/criticalCases_textView" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
