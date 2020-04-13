@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country_details.*
+import java.util.*
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -15,38 +16,45 @@ class CountryDetails : AppCompatActivity() {
 
 
         //Get Country Data From Main Activity
-        val countryName: String = intent.getStringExtra("CountryName")
-        val countrySlug: String = intent.getStringExtra("CountrySlug")
-        val countryCode: String = intent.getStringExtra("CountryCode")
-        val newConfirmed: String = intent.getStringExtra("newConfirmed")
-        val totalConfirmed: String = intent.getStringExtra("totalConfirmed")
-        val newDeaths: String = intent.getStringExtra("newDeaths")
-        val totalDeaths: String = intent.getStringExtra("totalDeath")
-        val newRecovered: String = intent.getStringExtra("newRecovered")
-        val totalRecovered: String = intent.getStringExtra("totalRecovered")
-        val date: String = intent.getStringExtra("date")
+        val active: String = intent.getStringExtra("active")
+        val cases: String = intent.getStringExtra("cases")
+        val casesPerMillion: String = intent.getStringExtra("casesPerMillion")
+        val country: String = intent.getStringExtra("country")
+        val countryInfoFlag: String = intent.getStringExtra("countryInfoFlag")
+        val countryInfoId: String = intent.getStringExtra("countryInfoId")
+        val countryInfoIso2: String = intent.getStringExtra("countryInfoIso2")
+        val countryInfoIso3: String = intent.getStringExtra("countryInfoIso3")
+        val countryInfoLat: String = intent.getStringExtra("countryInfoLat")
+        val countryInfoLong: String = intent.getStringExtra("countryInfoLong")
+        val critical: String = intent.getStringExtra("critical")
+        val deaths: String = intent.getStringExtra("deaths")
+        val deathsPerOneMillion: String = intent.getStringExtra("deathsPerOneMillion")
+        val recovered: String = intent.getStringExtra("recovered")
+        val tests: String = intent.getStringExtra("tests")
+        val testsPerOneMillion: String = intent.getStringExtra("testsPerOneMillion")
+        val todayCases: String = intent.getStringExtra("todayCases")
+        val todayDeaths: String = intent.getStringExtra("todayDeaths")
+        val updated: String = intent.getStringExtra("updated")
+
 
         //country_flag_imgView
-        getCountryFlag(countryCode)
+        getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
 
 
-        country_name_textView.text = countryName
-        country_code_textView.text = countryCode
+        country_name_textView.text = country
+        country_code_textView.text = countryInfoIso2
 
-        new_confirmed_textView.text = newConfirmed
-        total_confirmed_textView.text = totalConfirmed
+        total_confirmed_textView.text = cases
 
-        new_deaths__textView.text = newDeaths
-        total_deaths_textView.text = totalDeaths
+        total_deaths_textView.text = deaths
 
-        new_recovered_textView.text = newRecovered
-        total_recovered_textView.text = totalRecovered
+        total_recovered_textView.text = recovered
 
 
     }
 
     private fun getCountryFlag(countryCode: String) {
-        val imageUrl = "https://www.countryflags.io/$countryCode/flat/64.png"
+        val imageUrl = "https://raw.githubusercontent.com/NovelCOVID/API/master/assets/flags/$countryCode.png"
         //Loading image using Picasso
         Picasso.get().load(imageUrl).into(country_flag_imgView)
 

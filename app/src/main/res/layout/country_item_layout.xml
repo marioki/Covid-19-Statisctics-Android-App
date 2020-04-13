@@ -19,7 +19,7 @@
 
 
         <TextView
-            android:id="@+id/text_view_1"
+            android:id="@+id/country_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Country: "
@@ -27,160 +27,50 @@
             android:textSize="18sp"
             android:textStyle="bold" />
         <TextView
-            android:id="@+id/text_view_1_info"
+            android:id="@+id/country_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Country: "
-            android:layout_toEndOf="@id/text_view_1"
+            android:text="..."
+            android:layout_toEndOf="@id/country_textView"
             android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/text_view_2"
+            android:id="@+id/total_confirmed_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_1"
-            android:text="Country Code: "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_2_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_2"
-            android:layout_toEndOf="@id/text_view_2"
-            android:text="..."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_2"
-            android:text="New Confirmed: "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_3_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_3"
-            android:layout_toEndOf="@id/text_view_3"
-            android:text="..."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_3"
+            android:layout_below="@id/country_name_textView"
             android:text="TotalConfirmed: "
             android:textColor="@android:color/black"
             android:textSize="14sp" />
         <TextView
-            android:id="@+id/text_view_4_info"
+            android:id="@+id/cases_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_4"
-            android:layout_toEndOf="@id/text_view_4"
-            android:text="..."
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-<!--        <TextView-->
-<!--        android:id="@+id/text_view_5"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/text_view_4"-->
-<!--        android:text="NewDeaths: "-->
-<!--        android:textColor="@android:color/black"-->
-<!--        android:textSize="14sp" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/text_view_5_info"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignBaseline="@id/text_view_5"-->
-<!--                android:layout_toEndOf="@id/text_view_5"-->
-<!--                android:text="..."-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="14sp" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/text_view_6"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/text_view_5"-->
-<!--                android:text="TotalDeaths: "-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="14sp" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/text_view_6_info"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignBaseline="@id/text_view_6"-->
-<!--                android:layout_toEndOf="@id/text_view_6"-->
-<!--                android:text="..."-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="14sp" />-->
-<!--            <TextView-->
-<!--                android:id="@+id/text_view_7"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/text_view_6"-->
-<!--                android:text="NewRecovered: "-->
-<!--                android:textColor="@android:color/black"-->
-<!--                android:textSize="14sp" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/text_view_7_info"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignBaseline="@id/text_view_7"-->
-<!--            android:layout_toEndOf="@id/text_view_7"-->
-<!--            android:text="..."-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="14sp" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/text_view_8"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/text_view_7"-->
-<!--            android:text="TotalRecovered: "-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="14sp" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/text_view_8_info"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignBaseline="@id/text_view_8"-->
-<!--            android:layout_toEndOf="@id/text_view_8"-->
-<!--            android:text="..."-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="14sp" />-->
-        <TextView
-            android:id="@+id/text_view_9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_view_4"
-            android:text="Date: "
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
-        <TextView
-            android:id="@+id/text_view_9_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/text_view_9"
-            android:layout_toEndOf="@id/text_view_9"
+            android:layout_alignBaseline="@id/total_confirmed_textView"
+            android:layout_toEndOf="@id/total_confirmed_textView"
             android:text="..."
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
-        <!--        <TextView-->
-<!--            android:id="@+id/text_view_10"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/text_view_9"-->
-<!--            android:text="Line 10"-->
-<!--            android:textColor="@android:color/black"-->
-<!--            android:textSize="14sp" />-->
+        <TextView
+            android:id="@+id/date_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cases_textView"
+            android:text="Date: "
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
+        <TextView
+            android:id="@+id/date_info_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/date_textView"
+            android:layout_toEndOf="@id/date_textView"
+            android:text="..."
+            android:textColor="@android:color/black"
+            android:textSize="14sp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

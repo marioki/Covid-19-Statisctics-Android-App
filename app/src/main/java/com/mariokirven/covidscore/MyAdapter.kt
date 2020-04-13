@@ -1,7 +1,6 @@
 package com.mariokirven.covidscore
 
 import Model.CountryItem
-import Model.CountryX
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -11,14 +10,12 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getCodeCacheDir
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.country_item_layout.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<MyAdapter.ItemViewHolder>(), Filterable {
+class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapter<MyAdapter.ItemViewHolder>(), Filterable {
 
     var countryFilterList = exampleList
 
@@ -32,12 +29,14 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
                 if (charSearch.isEmpty()) {
                     countryFilterList = exampleList
                 } else {
-                    val resultList = ArrayList<CountryX>()
+                    val resultList = ArrayList<CountryItem>()
                     for (item in exampleList) {
                         if (item.country.toString().toLowerCase().contains(charSearch.toLowerCase(Locale.ROOT))) {
-                            val newCountryX = CountryX(item.country, item.countryCode, item.date,
-                                    item.newConfirmed, item.newDeaths, item.newRecovered
-                                    , item.slug, item.totalConfirmed, item.totalDeaths, item.totalRecovered)
+                            val newCountryItem = CountryItem(item.active, item.cases
+                                    , item.casesPerOneMillion, item.country, item.countryInfo
+                                    , item.critical, item.deaths, item.deathsPerOneMillion
+                                    , item.recovered, item.tests, item.testsPerOneMillion
+                                    , item.todayCases, item.todayDeaths, item.updated)
                             resultList.add(item)
                         }
                     }
@@ -51,7 +50,7 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
             }
 
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                countryFilterList = results?.values as ArrayList<CountryX>
+                countryFilterList = results?.values as ArrayList<CountryItem>
                 notifyDataSetChanged()
             }
 
@@ -82,34 +81,37 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
 
         val currentItem = countryFilterList[position]
 
-        holder.textView1.text = currentItem.country
-        holder.textView2.text = currentItem.countryCode
-        holder.textView3.text = currentItem.newConfirmed.toString()
-        holder.textView4.text = currentItem.totalConfirmed.toString()
-//        holder.textView5.text = currentItem.newDeaths.toString()
-//        holder.textView6.text = currentItem.totalDeaths.toString()
-//        holder.textView7.text = currentItem.newRecovered.toString()
-//        holder.textView8.text = currentItem.totalRecovered.toString()
-        holder.textView9.text = currentItem.date
+        holder.countryName.text = currentItem.country
+        holder.cases.text = currentItem.cases.toString()
+        holder.date.text = currentItem.updated.toString()
 
         //Detectar el click en el item
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            Toast.makeText(holder.itemView.context, "Selected: ${currentItem.slug}", Toast.LENGTH_LONG).show()
+            Toast.makeText(holder.itemView.context, "Selected: ${currentItem.country}", Toast.LENGTH_LONG).show()
 
 
             goToCountryDetails(context
-                    , currentItem.slug
-                    , currentItem.country
-                    , currentItem.countryCode
-                    , currentItem.newConfirmed.toString()
-                    , currentItem.totalConfirmed.toString()
-                    , currentItem.newDeaths.toString()
-                    , currentItem.totalDeaths.toString()
-                    , currentItem.newRecovered.toString()
-                    , currentItem.totalRecovered.toString()
-                    , currentItem.date)
+                    ,currentItem.active.toString()
+                    ,currentItem.cases.toString()
+                    ,currentItem.casesPerOneMillion.toString()
+                    ,currentItem.country
+                    ,currentItem.countryInfo.flag
+                    ,currentItem.countryInfo.id.toString()
+                    ,currentItem.countryInfo.iso2
+                    ,currentItem.countryInfo.iso3
+                    ,currentItem.countryInfo.lat.toString()
+                    ,currentItem.countryInfo.long.toString()
+                    ,currentItem.critical.toString()
+                    ,currentItem.deaths.toString()
+                    ,currentItem.deathsPerOneMillion.toString()
+                    ,currentItem.recovered.toString()
+                    ,currentItem.tests.toString()
+                    ,currentItem.testsPerOneMillion.toString()
+                    ,currentItem.todayCases.toString()
+                    ,currentItem.todayDeaths.toString()
+                    ,currentItem.updated.toString())
 
 
         }
@@ -118,29 +120,48 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
     }// End Of On Bind View Holder
 
     private fun goToCountryDetails(context: Context
-                                   , slug: String
+                                   , active: String
+                                   , cases: String
+                                   , casesPerOneMillion: String
                                    , country: String
-                                   , countryCode:String
-                                   , newConfirmed: String
-                                   , totalConfirmed : String
-                                   , newDeaths: String
-                                   , totalDeath: String
-                                   , newRecovered:String
-                                   , totalRecovered:String
-                                   , date: String)
+                                   , countryInfoFlag: String
+                                   , countryInfoId: String
+                                   , countryInfoIso2: String
+                                   , countryInfoIso3: String
+                                   , countryInfoLat: String
+                                   , countryInfoLong: String
+                                   , critical: String
+                                   , deaths: String
+                                   , deathsPerOneMillion: String
+                                   , recovered: String
+                                   , tests: String
+                                   , testsPerOneMillion: String
+                                   , todayCases: String
+                                   , todayDeaths: String
+                                   , updated: String)
 
     {
         val myIntent: Intent = Intent(context, CountryDetails::class.java).apply {
-            putExtra("CountrySlug", slug)
-            putExtra("CountryName", country)
-            putExtra("CountryCode", countryCode)
-            putExtra("newConfirmed", newConfirmed)
-            putExtra("totalConfirmed", totalConfirmed)
-            putExtra("newDeaths", newDeaths)
-            putExtra("totalDeath", totalDeath)
-            putExtra("newRecovered", newRecovered)
-            putExtra("totalRecovered", totalRecovered)
-            putExtra("date", date)
+            putExtra("active", active)
+            putExtra("cases", cases)
+            putExtra("casesPerMillion", casesPerOneMillion)
+            putExtra("country", country)
+            putExtra("countryInfoFlag", countryInfoFlag)
+            putExtra("countryInfoId", countryInfoId)
+            putExtra("countryInfoIso2", countryInfoIso2)
+            putExtra("countryInfoIso3", countryInfoIso3)
+            putExtra("countryInfoLat", countryInfoLat)
+            putExtra("countryInfoLong", countryInfoLong)
+            putExtra("critical", critical)
+            putExtra("deaths", deaths)
+            putExtra("deathsPerOneMillion", deathsPerOneMillion)
+            putExtra("recovered", recovered)
+            putExtra("tests", tests)
+            putExtra("testsPerOneMillion", testsPerOneMillion)
+            putExtra("todayCases", todayCases)
+            putExtra("todayDeaths", todayDeaths)
+            putExtra("updated", updated)
+
         }
         context.startActivity(myIntent)
 
@@ -154,17 +175,11 @@ class MyAdapter(private val exampleList: List<CountryX>) : RecyclerView.Adapter<
 
 
     class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        //val myItemView = itemView
 
-        val textView1: TextView = itemView.text_view_1_info
-        val textView2: TextView = itemView.text_view_2_info
-        val textView3: TextView = itemView.text_view_3_info
-        val textView4: TextView = itemView.text_view_4_info
-//        val textView5: TextView = itemView.text_view_5_info
-//        val textView6: TextView = itemView.text_view_6_info
-//        val textView7: TextView = itemView.text_view_7_info
-//        val textView8: TextView = itemView.text_view_8_info
-        val textView9: TextView = itemView.text_view_9_info
+        val countryName: TextView = itemView.country_name_textView
+        val cases: TextView = itemView.cases_textView
+        val date: TextView = itemView.date_info_textView
+
 
 
     }

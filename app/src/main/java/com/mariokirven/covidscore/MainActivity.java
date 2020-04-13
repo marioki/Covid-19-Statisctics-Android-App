@@ -1,23 +1,29 @@
 package com.mariokirven.covidscore;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
+
+import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
+
+import android.util.Log;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import Interfaz.CovApi;
 import Model.CountryItem;
-import Model.CountrySummary;
-import Model.CountryX;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,14 +61,15 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        List<CountryItem> countries = getCountries();
+        //List<CountryItem> countries = getCountries();
+        getCountries();
 
 
     }
 
 
 
-    private void setAdapter(List<CountryX> countries) {
+    private void setAdapter(List<CountryItem> countries) {
         myadapter = new MyAdapter(countries);
         recycler_view.setAdapter(myadapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
@@ -71,40 +78,169 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private List<CountryItem> getCountries() {
+    private void getCountries() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.covid19api.com/")
+                .baseUrl("https://corona.lmao.ninja/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
         CovApi myCovApi = retrofit.create(CovApi.class);
 
-        Call<CountrySummary> call = myCovApi.getSummary();
+        Call<ArrayList<CountryItem>> call = myCovApi.getCountries();
+        Log.e("myCode", "WE are Before the Onresponse ");
 
-        call.enqueue(new Callback<CountrySummary>() {
-
+        call.enqueue(new Callback<ArrayList<CountryItem>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onResponse(Call<CountrySummary> call, Response<CountrySummary> response) {
-                if (!response.isSuccessful()) {
-                    mainTextView.setText("Codigo" + response.code());
-                    return;
-                }
-
-                CountrySummary mySummary = response.body();
-                List<CountryX> myCountryList = mySummary.getCountries();
-                setAdapter(myCountryList);
-
+            public void onResponse(Call<ArrayList<CountryItem>> call, Response<ArrayList<CountryItem>> response) {
+                ArrayList<CountryItem> myCountryArray = response.body();
+//                List<CountryItem> myItems = new List<CountryItem>() {
+//                    @Override
+//                    public int size() {
+//                        return 0;
+//                    }
 //
+//                    @Override
+//                    public boolean isEmpty() {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean contains(@Nullable Object o) {
+//                        return false;
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public Iterator<CountryItem> iterator() {
+//                        return null;
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public Object[] toArray() {
+//                        return new Object[0];
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public <T> T[] toArray(@NonNull T[] ts) {
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public boolean add(CountryItem countryItem) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean remove(@Nullable Object o) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean containsAll(@NonNull Collection<?> collection) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean addAll(@NonNull Collection<? extends CountryItem> collection) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean addAll(int i, @NonNull Collection<? extends CountryItem> collection) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean removeAll(@NonNull Collection<?> collection) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public boolean retainAll(@NonNull Collection<?> collection) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public void clear() {
+//
+//                    }
+//
+//                    @Override
+//                    public boolean equals(@Nullable Object o) {
+//                        return false;
+//                    }
+//
+//                    @Override
+//                    public int hashCode() {
+//                        return 0;
+//                    }
+//
+//                    @Override
+//                    public CountryItem get(int i) {
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public CountryItem set(int i, CountryItem countryItem) {
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public void add(int i, CountryItem countryItem) {
+//
+//                    }
+//
+//                    @Override
+//                    public CountryItem remove(int i) {
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public int indexOf(@Nullable Object o) {
+//                        return 0;
+//                    }
+//
+//                    @Override
+//                    public int lastIndexOf(@Nullable Object o) {
+//                        return 0;
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public ListIterator<CountryItem> listIterator() {
+//                        return null;
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public ListIterator<CountryItem> listIterator(int i) {
+//                        return null;
+//                    }
+//
+//                    @NonNull
+//                    @Override
+//                    public List<CountryItem> subList(int i, int i1) {
+//                        return null;
+//                    }
+//                };
+//                myCountryArray.forEach(countryItem -> myItems.add(countryItem));
+                setAdapter(myCountryArray);
+                Log.e("myCode", "WE are Inside OnResponse " + response.code());
             }
 
             @Override
-            public void onFailure(Call<CountrySummary> call, Throwable t) {
-                mainTextView.setText(t.getMessage());
+            public void onFailure(Call<ArrayList<CountryItem>> call, Throwable t) {
+                Log.e("myCode", "WE are Inside Onfailure " + t.getMessage());
+
             }
         });
 
-        return null;
+
     }
+
 
 
 }

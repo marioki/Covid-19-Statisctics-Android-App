@@ -63,33 +63,13 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Cases"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Total Cases"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/textView6"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-            <TextView
-                android:id="@+id/new_confirmed_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="TextView"
-                android:textSize="24sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
-                app:layout_constraintStart_toEndOf="@+id/textView6" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/total_confirmed_textView"
@@ -123,15 +103,6 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/textView11"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Deaths"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/total_deaths_textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -145,21 +116,10 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Total Deaths"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/textView11"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <TextView
-                android:id="@+id/new_deaths__textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="TextView"
-                android:textSize="24sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView11"
-                app:layout_constraintStart_toEndOf="@+id/textView11" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
@@ -181,33 +141,13 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/textView16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="New Recovered"
-                android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
                 android:id="@+id/textView17"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:text="Total Recovered"
                 android:textSize="24sp"
-                app:layout_constraintStart_toStartOf="@+id/textView16"
-                app:layout_constraintTop_toBottomOf="@+id/textView16" />
-
-            <TextView
-                android:id="@+id/new_recovered_textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="TextView"
-                android:textSize="24sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/textView16"
-                app:layout_constraintStart_toEndOf="@+id/textView16" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/total_recovered_textView"
