@@ -98,9 +98,9 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
                     ,currentItem.casesPerOneMillion.toString()
                     ,currentItem.country
                     ,currentItem.countryInfo.flag
-                    ,currentItem.countryInfo.id.toString()
-                    ,currentItem.countryInfo.iso2
-                    ,currentItem.countryInfo.iso3
+                    , currentItem.countryInfo.id.toString()
+                    , currentItem.countryInfo.iso2.toString()
+                    , currentItem.countryInfo.iso3.toString()
                     ,currentItem.countryInfo.lat.toString()
                     ,currentItem.countryInfo.long.toString()
                     ,currentItem.critical.toString()
