@@ -2,6 +2,12 @@ package com.mariokirven.covidscore
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.anychart.AnyChart
+import com.anychart.AnyChartView
+import com.anychart.chart.common.dataentry.DataEntry
+import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.anychart.enums.Align
+import com.anychart.enums.LegendLayout
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country_details.*
 import java.util.*
@@ -38,10 +44,49 @@ class CountryDetails : AppCompatActivity() {
 
 
         //country_flag_imgView
-
-
         getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
+        //Set infromation into the text views
+        setCountryStats(country,countryInfoIso2,cases,critical,deaths, recovered)
 
+        //Generate Charts
+        val anyChartView = any_chart_view
+        setCharts(anyChartView,active,critical,deaths,recovered,cases)
+
+
+
+    }
+
+    private fun setCharts(anyChartView : AnyChartView, active:String, critical:String, deaths: String, recovered: String, cases: String) {
+        val pie = AnyChart.pie()
+
+        val data: MutableList<DataEntry> = ArrayList()
+        data.add(ValueDataEntry("Activos", active.toInt()))
+        data.add(ValueDataEntry("Críticos", critical.toInt()))
+        data.add(ValueDataEntry("Defunciones", deaths.toInt()))
+        data.add(ValueDataEntry("Recuperados", recovered.toInt()))
+        pie.data(data)
+
+        pie.title("$cases Confirmed Cases")
+
+        pie.labels().position("outside")
+
+//        pie.legend().title().enabled(true)
+//        pie.legend().title()
+//                .text("Retail channels")
+//                .padding(0.0, 0.0, 10.0, 0.0)
+
+        pie.legend()
+                .position("center-bottom")
+                .itemsLayout(LegendLayout.HORIZONTAL)
+                .align(Align.CENTER).padding(0,0,8,0)
+
+
+        anyChartView.setChart(pie);
+
+
+    }
+
+    private fun setCountryStats(country: String, countryInfoIso2:String,cases:String,critical:String,deaths:String,recovered:String) {
         country_name_textView.text = country
         country_code_textView.text = countryInfoIso2
 
@@ -52,7 +97,6 @@ class CountryDetails : AppCompatActivity() {
 
         total_recovered_textView.text = recovered
 
-
     }
 
     private fun getCountryFlag(countryCode: String) {
@@ -61,5 +105,6 @@ class CountryDetails : AppCompatActivity() {
         Picasso.get().load(imageUrl).into(country_flag_imgView)
 
     }
+
 
 }

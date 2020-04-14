@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Covid Score</string>
+    <string name="app_name">Covid-19 World Tracker</string>
 
     <string name="total_cases">Total Cases:</string>
     <string name="critical_cases">Critical Cases:</string>

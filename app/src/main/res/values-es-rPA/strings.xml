@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Covid Score</string>
+    <string name="app_name">Covid-19 World Tracker</string>
     <string name="total_cases">Casos Confirmados:</string>
     <string name="critical_cases">Casos Críticos:</string>
     <string name="total_deaths">Defunciones:</string>

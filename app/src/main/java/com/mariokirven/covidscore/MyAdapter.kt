@@ -99,8 +99,6 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
-            Toast.makeText(holder.itemView.context, "Selected: ${currentItem.country}", Toast.LENGTH_LONG).show()
-
 
             goToCountryDetails(context
                     , currentItem.active.toString()

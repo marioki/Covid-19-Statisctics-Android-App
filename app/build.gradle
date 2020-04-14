@@ -19,6 +19,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -48,6 +50,11 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     //picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+    //AnyChart is for the graphs
+    implementation 'com.github.AnyChart:AnyChart-Android:1.1.2'
+
+    implementation 'com.android.support:multidex:1.0.3'
+
 
 
 }
