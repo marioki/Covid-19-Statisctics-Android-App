@@ -11,9 +11,8 @@ import Model.CountryItem;
 import Model.CountryList;
 import retrofit2.Call;
 import retrofit2.http.GET;
-
 public interface CovApi {
-    @GET("countries")
+    @GET("countries?sort=cases")
     Call<ArrayList<CountryItem>> getCountries();
 
 //    @GET("summary")

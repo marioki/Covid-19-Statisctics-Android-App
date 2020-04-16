@@ -3,16 +3,17 @@ package com.mariokirven.covidscore
 import Model.CountryItem
 import android.content.Context
 import android.content.Intent
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.country_item_layout.view.*
 import java.text.SimpleDateFormat
-
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -92,9 +93,6 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         getCountryFlag(currentItem.countryInfo.iso2.toString(), holder.countryFlag)
 
 
-
-
-
         //Detectar el click en el item
 
         holder.itemView.setOnClickListener {
@@ -127,7 +125,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
     }// End Of On Bind View Holder
 
-    private fun getActualDate(miliTime:Long): String {
+    private fun getActualDate(miliTime: Long): String {
         val itemLong = (miliTime / 1000)
 
         val d = Date(itemLong * 1000L)
@@ -204,7 +202,6 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         val deaths: TextView = itemView.deaths_list_info
         val date: TextView = itemView.date_info_textView
         val countryFlag: ImageView = itemView.country_flag_view
-
 
 
     }

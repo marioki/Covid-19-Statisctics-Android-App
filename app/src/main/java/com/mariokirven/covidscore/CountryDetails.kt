@@ -2,12 +2,14 @@ package com.mariokirven.covidscore
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.anychart.APIlib
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.anychart.enums.Align
-import com.anychart.enums.LegendLayout
+import com.anychart.charts.Cartesian
+import com.anychart.core.cartesian.series.Column
+import com.anychart.enums.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country_details.*
 import java.util.*
@@ -46,17 +48,23 @@ class CountryDetails : AppCompatActivity() {
         //country_flag_imgView
         getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
         //Set infromation into the text views
-        setCountryStats(country,countryInfoIso2,cases,critical,deaths, recovered)
+        setCountryStats(country, countryInfoIso2, cases, critical, deaths, recovered)
 
-        //Generate Charts
-        val anyChartView = any_chart_view
-        setCharts(anyChartView,active,critical,deaths,recovered,cases)
+        //Generate pie Chart
+        val anyChartView = any_chart_view_pie
+        setCharts(any_chart_view_pie, active, critical, deaths, recovered, cases)
 
+        //Generate Column chart
+        setColumnChart(any_chart_view_column)
 
 
     }
 
-    private fun setCharts(anyChartView : AnyChartView, active:String, critical:String, deaths: String, recovered: String, cases: String) {
+
+    private fun setCharts(anyChartView: AnyChartView, active: String, critical: String, deaths: String, recovered: String, cases: String) {
+        //Necesario para manipular charts cuando existe mas de una anyChartView en el layout
+        APIlib.getInstance().setActiveAnyChartView(anyChartView);
+
         val pie = AnyChart.pie()
 
         val data: MutableList<DataEntry> = ArrayList()
@@ -78,7 +86,7 @@ class CountryDetails : AppCompatActivity() {
         pie.legend()
                 .position("center-bottom")
                 .itemsLayout(LegendLayout.HORIZONTAL)
-                .align(Align.CENTER).padding(0,0,8,0)
+                .align(Align.CENTER).padding(0, 0, 8, 0)
 
 
         anyChartView.setChart(pie)
@@ -86,7 +94,51 @@ class CountryDetails : AppCompatActivity() {
 
     }
 
-    private fun setCountryStats(country: String, countryInfoIso2:String,cases:String,critical:String,deaths:String,recovered:String) {
+
+    private fun setColumnChart(columnAnyChartView: AnyChartView) {
+        APIlib.getInstance().setActiveAnyChartView(columnAnyChartView);
+
+
+        val cartesian: Cartesian = AnyChart.column()
+
+        val data: MutableList<DataEntry> = ArrayList()
+        data.add(ValueDataEntry("Rouge", 80540))
+        data.add(ValueDataEntry("Foundation", 94190))
+        data.add(ValueDataEntry("Mascara", 102610))
+        data.add(ValueDataEntry("Lip gloss", 110430))
+        data.add(ValueDataEntry("Lipstick", 128000))
+        data.add(ValueDataEntry("Nail polish", 143760))
+        data.add(ValueDataEntry("Eyebrow pencil", 170670))
+        data.add(ValueDataEntry("Eyeliner", 213210))
+        data.add(ValueDataEntry("Eyeshadows", 249980))
+
+        val column: Column = cartesian.column(data)
+
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0.0)
+                .offsetY(5.0)
+                .format("\${%Value}{groupsSeparator: }")
+
+        cartesian.animation(true)
+        cartesian.title("Top 10 Cosmetic Products by Revenue")
+
+        cartesian.yScale().minimum(0.0)
+
+        cartesian.yAxis(0).labels().format("\${%Value}{groupsSeparator: }")
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
+        cartesian.interactivity().hoverMode(HoverMode.BY_X)
+
+        cartesian.xAxis(0).title("Product")
+        cartesian.yAxis(0).title("Revenue")
+
+        columnAnyChartView.setChart(cartesian)
+    }
+
+    private fun setCountryStats(country: String, countryInfoIso2: String, cases: String, critical: String, deaths: String, recovered: String) {
         country_name_textView.text = country
         country_code_textView.text = countryInfoIso2
 

@@ -189,7 +189,12 @@
             </androidx.cardview.widget.CardView>
 
             <com.anychart.AnyChartView
-                android:id="@+id/any_chart_view"
+                android:id="@+id/any_chart_view_pie"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+            <com.anychart.AnyChartView
+                android:id="@+id/any_chart_view_column"
                 android:layout_width="match_parent"
                 android:layout_height="250dp" />
 
