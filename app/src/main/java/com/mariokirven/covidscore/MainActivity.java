@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         CovApi myCovApi = retrofit.create(CovApi.class);
 
-        Call<ArrayList<CountryItem>> call = myCovApi.getCountriesSortetByCaseDes();
+        Call<ArrayList<CountryItem>> call = myCovApi.getCountriesSortedByCaseDes();
         Log.e("myCode", "WE are Before the Onresponse ");
 
         call.enqueue(new Callback<ArrayList<CountryItem>>() {

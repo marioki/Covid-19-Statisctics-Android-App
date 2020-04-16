@@ -160,7 +160,7 @@ class CountryDetails : AppCompatActivity() {
         val data: MutableList<DataEntry> = ArrayList()
 
         myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem ->
-            data.add(ValueDataEntry("${countryHistoryItem.date}", countryHistoryItem.cases))}
+            data.add(ValueDataEntry(countryHistoryItem.date, countryHistoryItem.cases))}
 
 
 
@@ -172,20 +172,20 @@ class CountryDetails : AppCompatActivity() {
                 .anchor(Anchor.CENTER_BOTTOM)
                 .offsetX(0.0)
                 .offsetY(5.0)
-                .format("\${%Value}{groupsSeparator: }")
+                .format("{%Value}{groupsSeparator: }")
 
         cartesian.animation(true)
-        cartesian.title("Top 10 Cosmetic Products by Revenue")
+        cartesian.title("Confirmed Cases By Day")
 
         cartesian.yScale().minimum(0.0)
 
-        cartesian.yAxis(0).labels().format("\${%Value}{groupsSeparator: }")
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }")
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
         cartesian.interactivity().hoverMode(HoverMode.BY_X)
 
-        cartesian.xAxis(0).title("Product")
-        cartesian.yAxis(0).title("Revenue")
+        cartesian.xAxis(0).title("Date")
+        cartesian.yAxis(0).title("Cases")
 
         columnAnyChartView.setChart(cartesian)
     }

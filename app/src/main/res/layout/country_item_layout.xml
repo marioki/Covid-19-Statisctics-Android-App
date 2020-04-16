@@ -52,7 +52,7 @@
             android:layout_marginStart="8dp"
             android:layout_toEndOf="@id/total_confirmed_textView"
             android:text="..."
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/holo_orange_dark"
             android:textSize="14sp" />
 
         <TextView

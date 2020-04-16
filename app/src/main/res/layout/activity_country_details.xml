@@ -95,8 +95,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/cases_info"
+                        android:textColor="@android:color/holo_orange_dark"
                         android:textSize="24sp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView4"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/textView4" />
 
                     <TextView
@@ -115,8 +118,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/critical_info"
+                        android:textColor="@android:color/holo_red_light"
                         android:textSize="24sp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/criticalCases_textView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/criticalCases_textView" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -140,8 +146,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/total_deaths_info"
+                        android:textColor="@android:color/holo_red_dark"
                         android:textSize="24sp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/textView" />
 
                     <TextView
@@ -182,8 +191,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:text="@string/total_recovered_info"
+                        android:textColor="@android:color/holo_green_dark"
                         android:textSize="24sp"
                         app:layout_constraintBaseline_toBaselineOf="@+id/textView17"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/textView17" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

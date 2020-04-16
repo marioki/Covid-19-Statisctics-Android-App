@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 //import Model.CountrySummary;
 public interface CovApi {
     @GET("countries?sort=cases")
-    Call<ArrayList<CountryItem>> getCountriesSortetByCaseDes();
+    Call<ArrayList<CountryItem>> getCountriesSortedByCaseDes();
 
     @GET("status/confirmed")
     Call<ArrayList<CountryHistoryItem>> getCountryHistoricalAll();
