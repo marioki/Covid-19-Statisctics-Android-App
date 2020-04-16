@@ -1,6 +1,11 @@
 package com.mariokirven.covidscore
 
+import Interfaz.CovApi
+import Model.CountryHistoryItem
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.anychart.APIlib
 import com.anychart.AnyChart
@@ -12,7 +17,13 @@ import com.anychart.core.cartesian.series.Column
 import com.anychart.enums.*
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country_details.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -21,6 +32,7 @@ class CountryDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_details)
+
 
 
         //Get Country Data From Main Activity
@@ -44,6 +56,9 @@ class CountryDetails : AppCompatActivity() {
         val todayDeaths: String = intent.getStringExtra("todayDeaths")
         val updated: String = intent.getStringExtra("updated")
 
+        //Get Country Historical Data
+        getCountryHistData(countryInfoIso2,any_chart_view_column)
+
 
         //country_flag_imgView
         getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
@@ -54,11 +69,53 @@ class CountryDetails : AppCompatActivity() {
         val anyChartView = any_chart_view_pie
         setCharts(any_chart_view_pie, active, critical, deaths, recovered, cases)
 
-        //Generate Column chart
-        setColumnChart(any_chart_view_column)
+
 
 
     }
+
+
+
+
+    private fun getCountryHistData(countryCode: String, columnAnyChartView: AnyChartView) {
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.covid19api.com/total/dayone/country/$countryCode/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val myCovApi = retrofit.create(CovApi::class.java)
+        val call = myCovApi.countryHistoricalAll
+
+        call.enqueue(object : Callback<java.util.ArrayList<CountryHistoryItem>?> {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            override fun onResponse(call: Call<java.util.ArrayList<CountryHistoryItem>?>, response:
+            Response<java.util.ArrayList<CountryHistoryItem>?>) {
+                val dateList = ArrayList<String>()
+                val numberOfCases =  ArrayList<Int>()
+
+                val myCountryHistoryArrayList = response.body()
+
+                myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem -> dateList.add(countryHistoryItem.date)
+                numberOfCases.add(countryHistoryItem.cases)}
+
+                if (myCountryHistoryArrayList != null) {
+                    setColumnChart(columnAnyChartView,myCountryHistoryArrayList)
+                }
+
+                Log.e("myCode", "WE are Inside History OnResponse  " + response.code())
+                //Log.e("My Array",  dateList[0] + dateList[1])
+
+            }
+
+            override fun onFailure(call: Call<java.util.ArrayList<CountryHistoryItem>?>, t: Throwable) {
+                Log.e("myCode", "WE are Inside History Onfailure " + t.message)
+            }
+        })
+
+    }
+
+
+
 
 
     private fun setCharts(anyChartView: AnyChartView, active: String, critical: String, deaths: String, recovered: String, cases: String) {
@@ -95,22 +152,17 @@ class CountryDetails : AppCompatActivity() {
     }
 
 
-    private fun setColumnChart(columnAnyChartView: AnyChartView) {
+    private fun setColumnChart(columnAnyChartView: AnyChartView, myCountryHistoryArrayList: ArrayList<CountryHistoryItem>) {
         APIlib.getInstance().setActiveAnyChartView(columnAnyChartView);
-
 
         val cartesian: Cartesian = AnyChart.column()
 
         val data: MutableList<DataEntry> = ArrayList()
-        data.add(ValueDataEntry("Rouge", 80540))
-        data.add(ValueDataEntry("Foundation", 94190))
-        data.add(ValueDataEntry("Mascara", 102610))
-        data.add(ValueDataEntry("Lip gloss", 110430))
-        data.add(ValueDataEntry("Lipstick", 128000))
-        data.add(ValueDataEntry("Nail polish", 143760))
-        data.add(ValueDataEntry("Eyebrow pencil", 170670))
-        data.add(ValueDataEntry("Eyeliner", 213210))
-        data.add(ValueDataEntry("Eyeshadows", 249980))
+
+        myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem ->
+            data.add(ValueDataEntry("${countryHistoryItem.date}", countryHistoryItem.cases))}
+
+
 
         val column: Column = cartesian.column(data)
 
