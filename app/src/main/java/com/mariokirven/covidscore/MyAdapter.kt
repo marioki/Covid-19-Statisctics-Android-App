@@ -128,7 +128,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
     }// End Of On Bind View Holder
 
     private fun getActualDate(miliTime:Long): String {
-        val itemLong = (miliTime / 1000) as Long
+        val itemLong = (miliTime / 1000)
 
         val d = Date(itemLong * 1000L)
         val itemDateStr: String = SimpleDateFormat("dd-MMM HH:mm").format(d)

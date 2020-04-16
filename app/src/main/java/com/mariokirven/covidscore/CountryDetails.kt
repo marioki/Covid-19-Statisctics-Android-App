@@ -81,7 +81,7 @@ class CountryDetails : AppCompatActivity() {
                 .align(Align.CENTER).padding(0,0,8,0)
 
 
-        anyChartView.setChart(pie);
+        anyChartView.setChart(pie)
 
 
     }
