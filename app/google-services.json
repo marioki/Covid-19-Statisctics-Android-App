@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "777431038801",
+    "firebase_url": "https://covid-19-world-tracker-69e81.firebaseio.com",
+    "project_id": "covid-19-world-tracker-69e81",
+    "storage_bucket": "covid-19-world-tracker-69e81.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777431038801:android:d31054c46aa4097e777170",
+        "android_client_info": {
+          "package_name": "com.mariokirven.covidscore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777431038801-1kssb948o78euaiql2vu5588qvt85vsm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDI8f6VkZpkTM2rgeG2zj1tj80KNQc9qxs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777431038801-1kssb948o78euaiql2vu5588qvt85vsm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
