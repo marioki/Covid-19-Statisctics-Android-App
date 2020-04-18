@@ -114,6 +114,7 @@ class CountryDetails : AppCompatActivity() {
 
 
     private fun setCharts(anyChartView: AnyChartView, active: String, critical: String, deaths: String, recovered: String, cases: String) {
+        anyChartView.setProgressBar(findViewById(R.id.pieIndeterminateBar));
         //Necesario para manipular charts cuando existe mas de una anyChartView en el layout
         APIlib.getInstance().setActiveAnyChartView(anyChartView);
         //Formato de numero del titulo del piechart
@@ -138,6 +139,7 @@ class CountryDetails : AppCompatActivity() {
 
         pie.title(getString(R.string.total_cases_tittle_mixed,formattedCases))
 
+
         pie.labels().position("outside")
 
 //        pie.legend().title().enabled(true)
@@ -159,6 +161,8 @@ class CountryDetails : AppCompatActivity() {
 
     private fun setColumnChart(columnAnyChartView: AnyChartView, myCountryHistoryArrayList: ArrayList<CountryHistoryItem>) {
         APIlib.getInstance().setActiveAnyChartView(columnAnyChartView);
+
+        columnAnyChartView.setProgressBar(findViewById(R.id.indeterminateBar));
 
         val cartesian: Cartesian = AnyChart.column()
 
@@ -191,6 +195,8 @@ class CountryDetails : AppCompatActivity() {
 
         cartesian.xAxis(0).title(getString(R.string.time_label))
         cartesian.yAxis(0).title(getString(R.string.number_of_cases_label))
+
+        cartesian.xAxis(0).labels().rotation()
 
         columnAnyChartView.setChart(cartesian)
     }

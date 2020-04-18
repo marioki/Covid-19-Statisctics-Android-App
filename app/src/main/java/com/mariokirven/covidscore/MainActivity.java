@@ -44,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                myadapter.getFilter().filter(newText);
+                if (myadapter != null){
+                    myadapter.getFilter().filter(newText);
+                }
+
                 return false;
             }
         };

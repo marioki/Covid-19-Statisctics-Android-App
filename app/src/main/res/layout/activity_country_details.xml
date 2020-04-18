@@ -175,12 +175,28 @@
             <com.anychart.AnyChartView
                 android:id="@+id/any_chart_view_pie"
                 android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                android:layout_height="300dp" >
+
+                <ProgressBar
+                    android:id="@+id/pieIndeterminateBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+            </com.anychart.AnyChartView>
 
             <com.anychart.AnyChartView
                 android:id="@+id/any_chart_view_column"
                 android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                android:layout_height="300dp" >
+
+                <ProgressBar
+                    android:id="@+id/indeterminateBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+            </com.anychart.AnyChartView>
 
         </LinearLayout>
     </ScrollView>
