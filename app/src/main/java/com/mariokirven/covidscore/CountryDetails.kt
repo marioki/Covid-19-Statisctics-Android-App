@@ -63,6 +63,7 @@ class CountryDetails : AppCompatActivity() {
 
         //country_flag_imgView
         getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
+
         //Set infromation into the text views
         setCountryStats(country, countryInfoIso2, cases, critical, deaths, recovered)
 

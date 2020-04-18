@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.country_item_layout.view.*
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -98,8 +99,12 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         val currentItem = countryFilterList[position]
 
         holder.countryName.text = currentItem.country
-        holder.cases.text = currentItem.cases.toString()
-        holder.deaths.text = currentItem.deaths.toString()
+
+        holder.cases.text = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.cases.toDouble())
+        holder.deaths.text  = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.deaths.toDouble())
+
+
+
 
         holder.date.text = getActualDate(currentItem.updated)
 
