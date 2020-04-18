@@ -5,6 +5,7 @@ import Model.CountryHistoryItem
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.anychart.APIlib
@@ -72,6 +73,18 @@ class CountryDetails : AppCompatActivity() {
 
     }
 
+    //Return to parent Activity without refreshing it
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id: Int = item.getItemId()
+        when (id) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 
     private fun getCountryHistData(countryCode: String, columnAnyChartView: AnyChartView) {
         val retrofit = Retrofit.Builder()
@@ -137,7 +150,7 @@ class CountryDetails : AppCompatActivity() {
 
         pie.data(data)
 
-        pie.title(getString(R.string.total_cases_tittle_mixed,formattedCases))
+        pie.title(getString(R.string.total_cases_tittle_mixed, formattedCases))
 
 
         pie.labels().position("outside")
