@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 //Necesary For Crashlytics
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
 
 android {
     compileSdkVersion 29
@@ -58,8 +60,9 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     //swipe refresh
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
-
+    //crashlytics
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
 
 
 
