@@ -21,4 +21,5 @@
     <string name="confirmed_cases_curve">Curva de Casos Confirmados</string>
     <string name="number_of_cases_label">Cantidad de Casos</string>
     <string name="time_label">Tiempo</string>
+    <string name="countryDetails_activity_title">Detalles del País</string>
 </resources>

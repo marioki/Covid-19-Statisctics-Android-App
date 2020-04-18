@@ -68,14 +68,27 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         itemView.setOnClickListener {
             hearOnClick(itemView)
         }
-
         return ItemViewHolder(itemView)
+
+
 
 
     }//End of On Create View Holder
 
     private fun hearOnClick(itemView: View?) {
 
+    }
+
+    // Clean all elements of the recycler
+    fun clear() {
+        countryFilterList.isEmpty()
+        notifyDataSetChanged()
+    }
+
+    // Add a list of items -- change to type used
+    fun addAll(list: List<CountryItem>) {
+        countryFilterList =exampleList
+        notifyDataSetChanged()
     }
 
 
