@@ -15,4 +15,28 @@
     <string name="total_deaths_info">Deaths: %1s</string>
     <string name="total_recovered_info">Recovered: %1s</string>
     <string name="total_deaths_list_info" translatable="false">...</string>
+
+    //Chart Strings
+    //pie
+    <string name="total_cases_tittle_mixed">%1s Confirmed Cases</string>
+
+    <string name="active_label">Active</string>
+    <string name="critical_label">Critical</string>
+    <string name="deaths_labes">Deaths</string>
+    <string name="recovered_labels">Recovered</string>
+    //column
+    <string name="confirmed_cases_curve">Confirmed Cases Curve</string>
+    <string name="time_label">Time</string>
+    <string name="number_of_cases_label">Number of Cases</string>
+
+
+    <!--    <string name="222">333</string>-->
+
+
+    data.add(ValueDataEntry("Activos", active.toInt()))
+    data.add(ValueDataEntry("Críticos", critical.toInt()))
+    data.add(ValueDataEntry("Defunciones", deaths.toInt()))
+    data.add(ValueDataEntry("Recuperados", recovered.toInt()))
+
+
 </resources>

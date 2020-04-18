@@ -116,17 +116,27 @@ class CountryDetails : AppCompatActivity() {
     private fun setCharts(anyChartView: AnyChartView, active: String, critical: String, deaths: String, recovered: String, cases: String) {
         //Necesario para manipular charts cuando existe mas de una anyChartView en el layout
         APIlib.getInstance().setActiveAnyChartView(anyChartView);
+        //Formato de numero del titulo del piechart
+        val formattedCases = NumberFormat.getNumberInstance(Locale.getDefault()).format(cases.toDouble())
+
+        //Guardando los valores de string values en variables para mejorar la legibilidad
+        val activeLabel = getString(R.string.active_label)
+        val criticalLabel = getString(R.string.critical_label)
+        val deathsLabel = getString(R.string.deaths_labes)
+        val recoveredLabel = getString(R.string.recovered_labels)
+
 
         val pie = AnyChart.pie()
 
         val data: MutableList<DataEntry> = ArrayList()
-        data.add(ValueDataEntry("Activos", active.toInt()))
-        data.add(ValueDataEntry("Críticos", critical.toInt()))
-        data.add(ValueDataEntry("Defunciones", deaths.toInt()))
-        data.add(ValueDataEntry("Recuperados", recovered.toInt()))
+        data.add(ValueDataEntry(activeLabel, active.toInt()))
+        data.add(ValueDataEntry(criticalLabel, critical.toInt()))
+        data.add(ValueDataEntry(deathsLabel, deaths.toInt()))
+        data.add(ValueDataEntry(recoveredLabel, recovered.toInt()))
+
         pie.data(data)
 
-        pie.title("$cases Confirmed Cases")
+        pie.title(getString(R.string.total_cases_tittle_mixed,formattedCases))
 
         pie.labels().position("outside")
 
@@ -170,7 +180,7 @@ class CountryDetails : AppCompatActivity() {
                 .format("{%Value}{groupsSeparator: }")
 
         cartesian.animation(true)
-        cartesian.title("Confirmed Cases By Day")
+        cartesian.title(getString(R.string.confirmed_cases_curve))
 
         cartesian.yScale().minimum(0.0)
 
@@ -179,8 +189,8 @@ class CountryDetails : AppCompatActivity() {
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
         cartesian.interactivity().hoverMode(HoverMode.BY_X)
 
-        cartesian.xAxis(0).title("Date")
-        cartesian.yAxis(0).title("Cases")
+        cartesian.xAxis(0).title(getString(R.string.time_label))
+        cartesian.yAxis(0).title(getString(R.string.number_of_cases_label))
 
         columnAnyChartView.setChart(cartesian)
     }
@@ -197,14 +207,14 @@ class CountryDetails : AppCompatActivity() {
 
 
 
-        total_confirmed_textView.text = getString(R.string.total_cases,formattedCases)
+        total_confirmed_textView.text = getString(R.string.total_cases, formattedCases)
 
-        critical_textView.text = getString(R.string.critical_info,formattedCritical)
+        critical_textView.text = getString(R.string.critical_info, formattedCritical)
 
 
-        total_deaths_list_textView.text = getString(R.string.total_deaths_info,formattedDeaths)
+        total_deaths_list_textView.text = getString(R.string.total_deaths_info, formattedDeaths)
 
-        total_recovered_textView.text = getString(R.string.total_recovered_info,formattedRecovered)
+        total_recovered_textView.text = getString(R.string.total_recovered_info, formattedRecovered)
     }
 
     private fun getCountryFlag(countryCode: String) {

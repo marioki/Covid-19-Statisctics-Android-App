@@ -13,4 +13,12 @@
     <string name="critical_info">Casos Críticos: %1s</string>
     <string name="total_deaths_info">Defunciones: %1s</string>
     <string name="total_recovered_info">Casos Recuperados: %1s</string>
+    <string name="active_label">Activos</string>
+    <string name="critical_label">Críticos</string>
+    <string name="deaths_labes">Defunciones</string>
+    <string name="recovered_labels">Recuperados</string>
+    <string name="total_cases_tittle_mixed">%1s Casos Confirmados</string>
+    <string name="confirmed_cases_curve">Curva de Casos Confirmados</string>
+    <string name="number_of_cases_label">Cantidad de Casos</string>
+    <string name="time_label">Tiempo</string>
 </resources>
