@@ -22,6 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -32,7 +33,6 @@ class CountryDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_details)
-
 
 
         //Get Country Data From Main Activity
@@ -57,7 +57,7 @@ class CountryDetails : AppCompatActivity() {
         val updated: String = intent.getStringExtra("updated")
 
         //Get Country Historical Data
-        getCountryHistData(countryInfoIso2,any_chart_view_column)
+        getCountryHistData(countryInfoIso2, any_chart_view_column)
 
 
         //country_flag_imgView
@@ -70,11 +70,7 @@ class CountryDetails : AppCompatActivity() {
         setCharts(any_chart_view_pie, active, critical, deaths, recovered, cases)
 
 
-
-
     }
-
-
 
 
     private fun getCountryHistData(countryCode: String, columnAnyChartView: AnyChartView) {
@@ -91,15 +87,17 @@ class CountryDetails : AppCompatActivity() {
             override fun onResponse(call: Call<java.util.ArrayList<CountryHistoryItem>?>, response:
             Response<java.util.ArrayList<CountryHistoryItem>?>) {
                 val dateList = ArrayList<String>()
-                val numberOfCases =  ArrayList<Int>()
+                val numberOfCases = ArrayList<Int>()
 
                 val myCountryHistoryArrayList = response.body()
 
-                myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem -> dateList.add(countryHistoryItem.date)
-                numberOfCases.add(countryHistoryItem.cases)}
+                myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem ->
+                    dateList.add(countryHistoryItem.date)
+                    numberOfCases.add(countryHistoryItem.cases)
+                }
 
                 if (myCountryHistoryArrayList != null) {
-                    setColumnChart(columnAnyChartView,myCountryHistoryArrayList)
+                    setColumnChart(columnAnyChartView, myCountryHistoryArrayList)
                 }
 
                 Log.e("myCode", "WE are Inside History OnResponse  " + response.code())
@@ -113,9 +111,6 @@ class CountryDetails : AppCompatActivity() {
         })
 
     }
-
-
-
 
 
     private fun setCharts(anyChartView: AnyChartView, active: String, critical: String, deaths: String, recovered: String, cases: String) {
@@ -160,8 +155,8 @@ class CountryDetails : AppCompatActivity() {
         val data: MutableList<DataEntry> = ArrayList()
 
         myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem ->
-            data.add(ValueDataEntry(countryHistoryItem.date, countryHistoryItem.cases))}
-
+            data.add(ValueDataEntry(countryHistoryItem.date, countryHistoryItem.cases))
+        }
 
 
         val column: Column = cartesian.column(data)
@@ -194,13 +189,22 @@ class CountryDetails : AppCompatActivity() {
         country_name_textView.text = country
         country_code_textView.text = countryInfoIso2
 
-        total_confirmed_textView.text = cases
-        critical_textView.text = critical
 
-        total_deaths_list_textView.text = deaths
+        val formattedCases = NumberFormat.getNumberInstance(Locale.getDefault()).format(cases.toDouble())
+        val formattedCritical = NumberFormat.getNumberInstance(Locale.getDefault()).format(critical.toDouble())
+        val formattedDeaths = NumberFormat.getNumberInstance(Locale.getDefault()).format(deaths.toDouble())
+        val formattedRecovered = NumberFormat.getNumberInstance(Locale.getDefault()).format(recovered.toDouble())
 
-        total_recovered_textView.text = recovered
 
+
+        total_confirmed_textView.text = getString(R.string.total_cases,formattedCases)
+
+        critical_textView.text = getString(R.string.critical_info,formattedCritical)
+
+
+        total_deaths_list_textView.text = getString(R.string.total_deaths_info,formattedDeaths)
+
+        total_recovered_textView.text = getString(R.string.total_recovered_info,formattedRecovered)
     }
 
     private fun getCountryFlag(countryCode: String) {

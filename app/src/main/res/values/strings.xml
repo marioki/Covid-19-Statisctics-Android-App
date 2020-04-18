@@ -1,18 +1,18 @@
 <resources>
     <string name="app_name">Covid-19 World Tracker</string>
 
-    <string name="total_cases">Total Cases:</string>
-    <string name="critical_cases">Critical Cases:</string>
-    <string name="total_deaths">Total Deaths:</string>
-    <string name="total_recovered">Total Recovered:</string>
+    <string name="total_cases">Total Cases: %1s</string>
+    <string name="critical_cases">Critical Cases: %1s</string>
+    <string name="total_deaths">Total Deaths: </string>
+    <string name="total_recovered">Total Recovered: %1s</string>
     <string name="country_code">Country Code</string>
     <string name="country_flag_description">Country Flag</string>
     <string name="country_list_name">Country:</string>
     <string name="totalconfirmed_list">Total Confirmed:</string>
     <string name="date_list">Date:</string>
     <string name="cases_info" translatable="false">...</string>
-    <string name="critical_info" translatable="false">...</string>
-    <string name="total_deaths_info" translatable="false">...</string>
-    <string name="total_recovered_info" translatable="false">...</string>
+    <string name="critical_info">Critrical Cases: %1s</string>
+    <string name="total_deaths_info">Deaths: %1s</string>
+    <string name="total_recovered_info">Recovered: %1s</string>
     <string name="total_deaths_list_info" translatable="false">...</string>
 </resources>

@@ -106,7 +106,7 @@
 
 
             android:text="..."
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/holo_red_dark" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
