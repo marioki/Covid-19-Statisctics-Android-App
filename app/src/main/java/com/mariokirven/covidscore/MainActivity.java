@@ -24,7 +24,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mainTextView;
     private RecyclerView recycler_view;
     private MyAdapter myadapter;
     private SwipeRefreshLayout swipeContainer;
@@ -121,7 +120,10 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<CountryItem> myCountryArray = response.body();
 
                 // Remember to CLEAR OUT old items before appending in the new ones
-                myadapter.clear();
+                if (myadapter != null){
+                    myadapter.clear();
+                }
+
                 // ...the data has come back, add new items to your adapter...
                 setAdapter(myCountryArray);
 
