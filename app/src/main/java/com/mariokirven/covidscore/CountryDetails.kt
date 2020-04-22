@@ -238,7 +238,7 @@ class CountryDetails : AppCompatActivity() {
     }
 
     private fun getCountryFlag(countryCode: String) {
-        val imageUrl = "https://raw.githubusercontent.com/NovelCOVID/API/master/assets/flags/$countryCode.png"
+        val imageUrl = "https://corona.lmao.ninja/assets/img/flags/$countryCode.png"
         //Loading image using Picasso
         Picasso.get().load(imageUrl).into(country_flag_imgView)
 
