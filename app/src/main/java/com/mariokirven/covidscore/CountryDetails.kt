@@ -150,6 +150,16 @@ class CountryDetails : AppCompatActivity() {
         data.add(ValueDataEntry(recoveredLabel, recovered.toInt()))
 
         pie.data(data)
+        pie.labels().fontColor("Black")
+
+        val yellow = "#D4AC0D"
+        val red = "#BA4A00"
+        val green = "#28B463"
+        val black = "#273746"
+
+        pie.palette(arrayOf(yellow, red, black, green))
+
+        pie.palette().items()
 
         pie.title(getString(R.string.total_cases_tittle_mixed, formattedCases))
 
