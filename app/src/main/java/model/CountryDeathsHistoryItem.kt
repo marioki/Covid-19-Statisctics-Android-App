@@ -1,9 +1,9 @@
-package Model
+package model
 
 
 import com.google.gson.annotations.SerializedName
 
-data class CountryHistoryItem(
+data class CountryDeathsHistoryItem(
     @SerializedName("Cases")
     val cases: Int,
     @SerializedName("City")

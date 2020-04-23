@@ -4,7 +4,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.SearchView;
-import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Interfaz.CovApi;
-import Model.CountryItem;
+import model.CountryItem;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

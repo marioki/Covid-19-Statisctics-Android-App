@@ -1,4 +1,4 @@
-package Model
+package model
 
 
 class CountryHistory : ArrayList<CountryHistoryItem>()

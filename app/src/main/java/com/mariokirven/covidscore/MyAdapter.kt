@@ -1,6 +1,6 @@
 package com.mariokirven.covidscore
 
-import Model.CountryItem
+import model.CountryItem
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater

@@ -2,8 +2,9 @@ package Interfaz;
 
 import java.util.ArrayList;
 
-import Model.CountryHistoryItem;
-import Model.CountryItem;
+import model.CountryDeathsHistoryItem;
+import model.CountryHistoryItem;
+import model.CountryItem;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -14,6 +15,9 @@ public interface CovApi {
 
     @GET("status/confirmed")
     Call<ArrayList<CountryHistoryItem>> getCountryHistoricalAll();
+
+    @GET("status/deaths")
+    Call<ArrayList<CountryDeathsHistoryItem>> getCountryDeathsHistoricalAll();
 
 
 

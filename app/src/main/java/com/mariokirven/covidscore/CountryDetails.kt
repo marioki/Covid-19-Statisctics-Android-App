@@ -1,7 +1,6 @@
 package com.mariokirven.covidscore
 
 import Interfaz.CovApi
-import Model.CountryHistoryItem
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -13,11 +12,15 @@ import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
+import com.anychart.charts.Bullet.instantiate
 import com.anychart.charts.Cartesian
 import com.anychart.core.cartesian.series.Column
 import com.anychart.enums.*
+import com.anychart.graphics.vector.Stroke
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country_details.*
+import model.CountryDeathsHistoryItem
+import model.CountryHistoryItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,6 +29,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import com.anychart.core.cartesian.series.Line;
+import com.anychart.data.Mapping;
+import com.anychart.data.Set;
+import com.anychart.enums.Anchor;
+import com.anychart.enums.MarkerType;
+import com.anychart.enums.TooltipPositionMode;
+
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -58,8 +68,8 @@ class CountryDetails : AppCompatActivity() {
         val updated: String = intent.getStringExtra("updated")
 
         //Get Country Historical Data
-        getCountryHistData(countryInfoIso2, any_chart_view_column)
-
+        getCountryCasesHistData(countryInfoIso2, any_chart_view_column)
+        getCountryDeathsHistData(countryInfoIso2, any_chart_view_column)
 
         //country_flag_imgView
         getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
@@ -74,6 +84,149 @@ class CountryDetails : AppCompatActivity() {
 
     }
 
+    private fun getCountryDeathsHistData(countryCode: String, lineDeathsAnyChartView: AnyChartView) {
+        val retrofit = Retrofit.Builder()
+                .baseUrl("https://api.covid19api.com/total/dayone/country/$countryCode/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+
+        val myCovApi = retrofit.create(CovApi::class.java)
+        val call = myCovApi.countryDeathsHistoricalAll
+
+        call.enqueue(object : Callback<java.util.ArrayList<CountryDeathsHistoryItem>?> {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            override fun onResponse(call: Call<java.util.ArrayList<CountryDeathsHistoryItem>?>, response:
+            Response<java.util.ArrayList<CountryDeathsHistoryItem>?>) {
+                val dateList = ArrayList<String>()
+                val numberOfCases = ArrayList<Int>()
+//                val numberOfDeaths = ArrayList<Int>()
+//                val numberOfRecovered = ArrayList<Int>()
+//                val numberOfActive = ArrayList<Int>()
+
+                val myCountryDeathHistoryArrayList = response.body()
+
+                myCountryDeathHistoryArrayList?.forEach { countryHistoryItem: CountryDeathsHistoryItem ->
+                    dateList.add(countryHistoryItem.date)
+                    numberOfCases.add(countryHistoryItem.cases)
+//                    numberOfDeaths.add(countryHistoryItem.deaths)
+//                    numberOfRecovered.add(countryHistoryItem.recovered)
+//                    numberOfActive.add(countryHistoryItem.active)
+                }
+
+                if (myCountryDeathHistoryArrayList != null) {
+                    setDeathsLineChart(lineDeathsAnyChartView, myCountryDeathHistoryArrayList)
+                }
+
+                Log.e("myCode", "WE are Inside History OnResponse  " + response.code())
+                //Log.e("My Array",  dateList[0] + dateList[1])
+
+            }
+
+            override fun onFailure(call: Call<java.util.ArrayList<CountryDeathsHistoryItem>?>, t: Throwable) {
+                Log.e("myCode", "WE are Inside History Onfailure " + t.message)
+            }
+        })
+
+
+    }
+
+    private fun setDeathsLineChart(lineDeathsAnyChartView: AnyChartView
+                                   , myCountryDeathHistoryArrayList: java.util.ArrayList<CountryDeathsHistoryItem>) {
+
+        APIlib.getInstance().setActiveAnyChartView(any_chart_view_deaths_line);
+
+        val anyChartView = findViewById<AnyChartView>(R.id.any_chart_view_deaths_line)
+        anyChartView.setProgressBar(findViewById(R.id.deathLineIndeterminateBar))
+
+        val cartesian = AnyChart.line()
+
+        cartesian.animation(true)
+
+        cartesian.padding(10.0, 20.0, 5.0, 20.0)
+
+        cartesian.crosshair().enabled(true)
+        cartesian.crosshair()
+                .yLabel(true) // TODO ystroke
+                .yStroke(null as Stroke?, null, null, null as String?, null as String?)
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
+
+        cartesian.title("Total Deaths")
+
+        cartesian.yAxis(0).title("Number of Deaths")
+        cartesian.xAxis(0).labels().padding(5.0, 5.0, 5.0, 5.0)
+
+        val seriesData: MutableList<DataEntry> = ArrayList()
+
+
+        myCountryDeathHistoryArrayList?.forEach { countryHistoryDeathsItem: CountryDeathsHistoryItem ->
+            seriesData.add(ValueDataEntry(countryHistoryDeathsItem.date, countryHistoryDeathsItem.cases))
+        }
+
+        //seriesData.add(CustomDataEntry("1986", 3.6, 2.3, 2.8))
+
+
+        val set = Set.instantiate()
+        set.data(seriesData)
+        val series1Mapping: Mapping = set.mapAs("{ x: 'x', value: 'value' }")
+//        val series2Mapping: Mapping = set.mapAs("{ x: 'x', value: 'value2' }")
+//        val series3Mapping: Mapping = set.mapAs("{ x: 'x', value: 'value3' }")
+
+
+        val series1: Line = cartesian.line(series1Mapping)
+        series1.name("Brandy")
+        series1.hovered().markers().enabled(true)
+        series1.hovered().markers()
+                .type(MarkerType.CIRCLE)
+                .size(4.0)
+        series1.tooltip()
+                .position("right")
+                .anchor(Anchor.LEFT_CENTER)
+                .offsetX(5.0)
+                .offsetY(5.0)
+
+//        val series2: Line = cartesian.line(series2Mapping)
+//        series2.name("Whiskey")
+//        series2.hovered().markers().enabled(true)
+//        series2.hovered().markers()
+//                .type(MarkerType.CIRCLE)
+//                .size(4.0)
+//        series2.tooltip()
+//                .position("right")
+//                .anchor(Anchor.LEFT_CENTER)
+//                .offsetX(5.0)
+//                .offsetY(5.0)
+//
+//        val series3: Line = cartesian.line(series3Mapping)
+//        series3.name("Tequila")
+//        series3.hovered().markers().enabled(true)
+//        series3.hovered().markers()
+//                .type(MarkerType.CIRCLE)
+//                .size(4.0)
+//        series3.tooltip()
+//                .position("right")
+//                .anchor(Anchor.LEFT_CENTER)
+//                .offsetX(5.0)
+//                .offsetY(5.0)
+//
+//        cartesian.legend().enabled(true)
+//        cartesian.legend().fontSize(13.0)
+//        cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
+//
+        anyChartView.setChart(cartesian)
+
+
+    }
+
+
+    private class CustomDataEntry internal constructor(x: String?, value: Number?, value2: Number?, value3: Number?) : ValueDataEntry(x, value) {
+        init {
+            setValue("value2", value2)
+            setValue("value3", value3)
+        }
+    }
+
+
     //Return to parent Activity without refreshing it
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id: Int = item.getItemId()
@@ -87,7 +240,7 @@ class CountryDetails : AppCompatActivity() {
     }
 
 
-    private fun getCountryHistData(countryCode: String, columnAnyChartView: AnyChartView) {
+    private fun getCountryCasesHistData(countryCode: String, columnAnyChartView: AnyChartView) {
         val retrofit = Retrofit.Builder()
                 .baseUrl("https://api.covid19api.com/total/dayone/country/$countryCode/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -102,12 +255,18 @@ class CountryDetails : AppCompatActivity() {
             Response<java.util.ArrayList<CountryHistoryItem>?>) {
                 val dateList = ArrayList<String>()
                 val numberOfCases = ArrayList<Int>()
+//                val numberOfDeaths = ArrayList<Int>()
+//                val numberOfRecovered = ArrayList<Int>()
+//                val numberOfActive = ArrayList<Int>()
 
                 val myCountryHistoryArrayList = response.body()
 
                 myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem ->
                     dateList.add(countryHistoryItem.date)
                     numberOfCases.add(countryHistoryItem.cases)
+//                    numberOfDeaths.add(countryHistoryItem.deaths)
+//                    numberOfRecovered.add(countryHistoryItem.recovered)
+//                    numberOfActive.add(countryHistoryItem.active)
                 }
 
                 if (myCountryHistoryArrayList != null) {
@@ -186,7 +345,7 @@ class CountryDetails : AppCompatActivity() {
     private fun setColumnChart(columnAnyChartView: AnyChartView, myCountryHistoryArrayList: ArrayList<CountryHistoryItem>) {
         APIlib.getInstance().setActiveAnyChartView(columnAnyChartView);
 
-        columnAnyChartView.setProgressBar(findViewById(R.id.indeterminateBar));
+        columnAnyChartView.setProgressBar(findViewById(R.id.collumnIndeterminateBar));
 
         val cartesian: Cartesian = AnyChart.column()
 

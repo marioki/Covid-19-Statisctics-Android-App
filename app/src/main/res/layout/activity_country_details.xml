@@ -192,7 +192,20 @@
                 android:layout_height="300dp" >
 
                 <ProgressBar
-                    android:id="@+id/indeterminateBar"
+                    android:id="@+id/collumnIndeterminateBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    />
+            </com.anychart.AnyChartView>
+
+            <com.anychart.AnyChartView
+                android:id="@+id/any_chart_view_deaths_line"
+                android:layout_width="match_parent"
+                android:layout_height="300dp" >
+
+                <ProgressBar
+                    android:id="@+id/deathLineIndeterminateBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
