@@ -12,9 +12,11 @@ import com.anychart.AnyChart
 import com.anychart.AnyChartView
 import com.anychart.chart.common.dataentry.DataEntry
 import com.anychart.chart.common.dataentry.ValueDataEntry
-import com.anychart.charts.Bullet.instantiate
 import com.anychart.charts.Cartesian
 import com.anychart.core.cartesian.series.Column
+import com.anychart.core.cartesian.series.Line
+import com.anychart.data.Mapping
+import com.anychart.data.Set
 import com.anychart.enums.*
 import com.anychart.graphics.vector.Stroke
 import com.squareup.picasso.Picasso
@@ -29,13 +31,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.ArrayList
-import com.anychart.core.cartesian.series.Line;
-import com.anychart.data.Mapping;
-import com.anychart.data.Set;
-import com.anychart.enums.Anchor;
-import com.anychart.enums.MarkerType;
-import com.anychart.enums.TooltipPositionMode;
-
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
@@ -83,6 +78,7 @@ class CountryDetails : AppCompatActivity() {
 
 
     }
+
 
     private fun getCountryDeathsHistData(countryCode: String, lineDeathsAnyChartView: AnyChartView) {
         val retrofit = Retrofit.Builder()

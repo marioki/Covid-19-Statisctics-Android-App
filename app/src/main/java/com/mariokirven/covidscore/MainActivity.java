@@ -1,12 +1,19 @@
 package com.mariokirven.covidscore;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -28,14 +35,16 @@ public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar myToolBar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolBar);
+
         // Lookup the swipe container view
-         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         // Setup refresh listener which triggers new data loading
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -53,11 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_red_light);
 
 
-
-
-
-
-
         recycler_view = findViewById(R.id.recycler_view);
 
         SearchView country_search = findViewById(R.id.searchView);
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (myadapter != null){
+                if (myadapter != null) {
                     myadapter.getFilter().filter(newText);
                 }
 
@@ -85,6 +89,47 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.item1:
+                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, "https://galaxy.store/covid19wo");
+                sendIntent.setType("text/plain");
+
+                Intent shareIntent = Intent.createChooser(sendIntent, null);
+                startActivity(shareIntent);
+                return true;
+
+//            case R.id.item2:
+//                Toast.makeText(this, "Item 2 selected", Toast.LENGTH_SHORT).show();
+//                return true;
+//
+//            case R.id.item3:
+//                Toast.makeText(this, "Item 3 selected", Toast.LENGTH_SHORT).show();
+//                return true;
+//
+//            case R.id.subItem1:
+//                Toast.makeText(this, "Sub item 1  selected", Toast.LENGTH_SHORT).show();
+//                return true;
+//
+//            case R.id.subItem2:
+//                Toast.makeText(this, "Sub item 2  selected", Toast.LENGTH_SHORT).show();
+//                return true;
+            default: return super.onOptionsItemSelected(item);
+
+
+        }
+    }
 
     private void fetchTimelineAsync(int i) {
         getCountriesRefresh();
@@ -98,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         recycler_view.setHasFixedSize(true);
 
     }
-
 
 
     private void getCountriesRefresh() {
@@ -119,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<CountryItem> myCountryArray = response.body();
 
                 // Remember to CLEAR OUT old items before appending in the new ones
-                if (myadapter != null){
+                if (myadapter != null) {
                     myadapter.clear();
                 }
 
@@ -141,9 +185,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
-
 
 
     private void getCountries() {

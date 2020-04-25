@@ -25,7 +25,7 @@
     <string name="deaths_labes">Deaths</string>
     <string name="recovered_labels">Recovered</string>
     //column
-    <string name="confirmed_cases_curve">Confirmed Cases Curve</string>
+    <string name="confirmed_cases_curve">Confirmed Cases Curve (accumulated)</string>
     <string name="time_label">Time</string>
     <string name="number_of_cases_label">Number of Cases</string>
     //Activities Tittles

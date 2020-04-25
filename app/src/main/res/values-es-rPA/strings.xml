@@ -18,7 +18,7 @@
     <string name="deaths_labes">Defunciones</string>
     <string name="recovered_labels">Recuperados</string>
     <string name="total_cases_tittle_mixed">%1s Casos Confirmados</string>
-    <string name="confirmed_cases_curve">Curva de Casos Confirmados</string>
+    <string name="confirmed_cases_curve">Curva de Casos Confirmados (Acumulado)</string>
     <string name="number_of_cases_label">Cantidad de Casos</string>
     <string name="time_label">Tiempo</string>
     <string name="countryDetails_activity_title">Detalles del País</string>
