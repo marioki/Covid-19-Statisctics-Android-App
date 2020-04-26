@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.anychart.APIlib
 import com.anychart.AnyChart
 import com.anychart.AnyChartView
@@ -39,6 +40,11 @@ class CountryDetails : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_details)
+
+        val myToolBar = findViewById<Toolbar>(R.id.detailsToolbar)
+        setSupportActionBar(myToolBar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true);
+
 
 
         //Get Country Data From Main Activity
@@ -297,6 +303,7 @@ class CountryDetails : AppCompatActivity() {
 
 
         val pie = AnyChart.pie()
+
 
         val data: MutableList<DataEntry> = ArrayList()
         data.add(ValueDataEntry(activeLabel, active.toInt()))
