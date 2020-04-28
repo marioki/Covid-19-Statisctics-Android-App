@@ -1,5 +1,6 @@
 package com.mariokirven.covidscore
 
+import android.annotation.SuppressLint
 import model.CountryItem
 import android.content.Context
 import android.content.Intent
@@ -35,7 +36,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
                 } else {
                     val resultList = ArrayList<CountryItem>()
                     for (item in exampleList) {
-                        if (item.country.toString().toLowerCase().contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (item.country.toString().toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             val newCountryItem = CountryItem(item.active, item.cases
                                     , item.casesPerOneMillion, item.country, item.countryInfo
                                     , item.critical, item.deaths, item.deathsPerOneMillion
@@ -112,7 +113,6 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
 
         //Detectar el click en el item
-
         holder.itemView.setOnClickListener {
             val context = holder.itemView.context
 
@@ -143,12 +143,12 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
     }// End Of On Bind View Holder
 
+    @SuppressLint("SimpleDateFormat")
     private fun getActualDate(miliTime: Long): String {
         val itemLong = (miliTime / 1000)
 
         val d = Date(itemLong * 1000L)
-        val itemDateStr: String = SimpleDateFormat("dd-MMM HH:mm").format(d)
-        return itemDateStr
+        return SimpleDateFormat("dd-MMM HH:mm").format(d)
     }
 
 

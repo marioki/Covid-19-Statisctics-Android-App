@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 // Your code to refresh the list here.
                 // Make sure you call swipeContainer.setRefreshing(false)
                 // once the network request has completed successfully.
-                fetchTimelineAsync(0);
+                fetchTimelineAsync();
             }
         });
         // Configure the refreshing colors
@@ -89,16 +91,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu,menu);
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.item1:
                 Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
                 Intent sendIntent = new Intent();
@@ -125,13 +128,14 @@ public class MainActivity extends AppCompatActivity {
 //            case R.id.subItem2:
 //                Toast.makeText(this, "Sub item 2  selected", Toast.LENGTH_SHORT).show();
 //                return true;
-            default: return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
 
 
         }
     }
 
-    private void fetchTimelineAsync(int i) {
+    private void fetchTimelineAsync() {
         getCountriesRefresh();
     }
 
@@ -159,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<CountryItem>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onResponse(Call<ArrayList<CountryItem>> call, Response<ArrayList<CountryItem>> response) {
+            public void onResponse(@NotNull Call<ArrayList<CountryItem>> call, @NotNull Response<ArrayList<CountryItem>> response) {
                 ArrayList<CountryItem> myCountryArray = response.body();
 
                 // Remember to CLEAR OUT old items before appending in the new ones
@@ -177,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<CountryItem>> call, Throwable t) {
+            public void onFailure(@NotNull Call<ArrayList<CountryItem>> call, @NotNull Throwable t) {
                 Log.e("myCode", "WE are Inside Onfailure " + t.getMessage());
 
             }
@@ -201,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<ArrayList<CountryItem>>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
-            public void onResponse(Call<ArrayList<CountryItem>> call, Response<ArrayList<CountryItem>> response) {
+            public void onResponse(@NotNull Call<ArrayList<CountryItem>> call, @NotNull Response<ArrayList<CountryItem>> response) {
                 ArrayList<CountryItem> myCountryArray = response.body();
 
 
@@ -210,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ArrayList<CountryItem>> call, Throwable t) {
+            public void onFailure(@NotNull Call<ArrayList<CountryItem>> call, @NotNull Throwable t) {
                 Log.e("myCode", "WE are Inside Onfailure " + t.getMessage());
 
             }

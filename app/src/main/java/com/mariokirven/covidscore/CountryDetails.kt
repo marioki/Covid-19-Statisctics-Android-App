@@ -34,8 +34,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS", "DEPRECATION")
 class CountryDetails : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +44,7 @@ class CountryDetails : AppCompatActivity() {
 
         val myToolBar = findViewById<Toolbar>(R.id.detailsToolbar)
         setSupportActionBar(myToolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true);
-
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 
         //Get Country Data From Main Activity
@@ -68,6 +68,7 @@ class CountryDetails : AppCompatActivity() {
         val todayDeaths: String = intent.getStringExtra("todayDeaths")
         val updated: String = intent.getStringExtra("updated")
 
+
         //Get Country Historical Data
         getCountryCasesHistData(countryInfoIso2, any_chart_view_column)
         getCountryDeathsHistData(countryInfoIso2, any_chart_view_column)
@@ -76,10 +77,9 @@ class CountryDetails : AppCompatActivity() {
         getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
 
         //Set infromation into the text views
-        setCountryStats(country, countryInfoIso2, cases, critical, deaths, recovered)
+        setCountryStats(country, countryInfoIso2, cases, critical, deaths, recovered,todayCases, todayDeaths)
 
         //Generate pie Chart
-        val anyChartView = any_chart_view_pie
         setCharts(any_chart_view_pie, active, critical, deaths, recovered, cases)
 
 
@@ -101,18 +101,14 @@ class CountryDetails : AppCompatActivity() {
             Response<java.util.ArrayList<CountryDeathsHistoryItem>?>) {
                 val dateList = ArrayList<String>()
                 val numberOfCases = ArrayList<Int>()
-//                val numberOfDeaths = ArrayList<Int>()
-//                val numberOfRecovered = ArrayList<Int>()
-//                val numberOfActive = ArrayList<Int>()
+
 
                 val myCountryDeathHistoryArrayList = response.body()
 
                 myCountryDeathHistoryArrayList?.forEach { countryHistoryItem: CountryDeathsHistoryItem ->
                     dateList.add(countryHistoryItem.date)
                     numberOfCases.add(countryHistoryItem.cases)
-//                    numberOfDeaths.add(countryHistoryItem.deaths)
-//                    numberOfRecovered.add(countryHistoryItem.recovered)
-//                    numberOfActive.add(countryHistoryItem.active)
+
                 }
 
                 if (myCountryDeathHistoryArrayList != null) {
@@ -120,7 +116,6 @@ class CountryDetails : AppCompatActivity() {
                 }
 
                 Log.e("myCode", "WE are Inside History OnResponse  " + response.code())
-                //Log.e("My Array",  dateList[0] + dateList[1])
 
             }
 
@@ -135,7 +130,7 @@ class CountryDetails : AppCompatActivity() {
     private fun setDeathsLineChart(lineDeathsAnyChartView: AnyChartView
                                    , myCountryDeathHistoryArrayList: java.util.ArrayList<CountryDeathsHistoryItem>) {
 
-        APIlib.getInstance().setActiveAnyChartView(any_chart_view_deaths_line);
+        APIlib.getInstance().setActiveAnyChartView(any_chart_view_deaths_line)
 
         val anyChartView = findViewById<AnyChartView>(R.id.any_chart_view_deaths_line)
         anyChartView.setProgressBar(findViewById(R.id.deathLineIndeterminateBar))
@@ -161,7 +156,7 @@ class CountryDetails : AppCompatActivity() {
         val seriesData: MutableList<DataEntry> = ArrayList()
 
 
-        myCountryDeathHistoryArrayList?.forEach { countryHistoryDeathsItem: CountryDeathsHistoryItem ->
+        myCountryDeathHistoryArrayList.forEach { countryHistoryDeathsItem: CountryDeathsHistoryItem ->
             seriesData.add(ValueDataEntry(countryHistoryDeathsItem.date, countryHistoryDeathsItem.cases))
         }
 
@@ -231,7 +226,7 @@ class CountryDetails : AppCompatActivity() {
 
     //Return to parent Activity without refreshing it
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id: Int = item.getItemId()
+        val id: Int = item.itemId
         when (id) {
             android.R.id.home -> {
                 onBackPressed()
@@ -289,9 +284,9 @@ class CountryDetails : AppCompatActivity() {
 
 
     private fun setCharts(anyChartView: AnyChartView, active: String, critical: String, deaths: String, recovered: String, cases: String) {
-        anyChartView.setProgressBar(findViewById(R.id.pieIndeterminateBar));
+        anyChartView.setProgressBar(findViewById(R.id.pieIndeterminateBar))
         //Necesario para manipular charts cuando existe mas de una anyChartView en el layout
-        APIlib.getInstance().setActiveAnyChartView(anyChartView);
+        APIlib.getInstance().setActiveAnyChartView(anyChartView)
         //Formato de numero del titulo del piechart
         val formattedCases = NumberFormat.getNumberInstance(Locale.getDefault()).format(cases.toDouble())
 
@@ -346,15 +341,15 @@ class CountryDetails : AppCompatActivity() {
 
 
     private fun setColumnChart(columnAnyChartView: AnyChartView, myCountryHistoryArrayList: ArrayList<CountryHistoryItem>) {
-        APIlib.getInstance().setActiveAnyChartView(columnAnyChartView);
+        APIlib.getInstance().setActiveAnyChartView(columnAnyChartView)
 
-        columnAnyChartView.setProgressBar(findViewById(R.id.collumnIndeterminateBar));
+        columnAnyChartView.setProgressBar(findViewById(R.id.collumnIndeterminateBar))
 
         val cartesian: Cartesian = AnyChart.column()
 
         val data: MutableList<DataEntry> = ArrayList()
 
-        myCountryHistoryArrayList?.forEach { countryHistoryItem: CountryHistoryItem ->
+        myCountryHistoryArrayList.forEach { countryHistoryItem: CountryHistoryItem ->
             data.add(ValueDataEntry(countryHistoryItem.date, countryHistoryItem.cases))
         }
 
@@ -387,7 +382,9 @@ class CountryDetails : AppCompatActivity() {
         columnAnyChartView.setChart(cartesian)
     }
 
-    private fun setCountryStats(country: String, countryInfoIso2: String, cases: String, critical: String, deaths: String, recovered: String) {
+    private fun setCountryStats(country: String, countryInfoIso2: String, cases: String,
+                                critical: String, deaths: String, recovered: String,
+                                todayCases: String, todayDeaths:String) {
         country_name_textView.text = country
         country_code_textView.text = countryInfoIso2
 
@@ -396,15 +393,18 @@ class CountryDetails : AppCompatActivity() {
         val formattedCritical = NumberFormat.getNumberInstance(Locale.getDefault()).format(critical.toDouble())
         val formattedDeaths = NumberFormat.getNumberInstance(Locale.getDefault()).format(deaths.toDouble())
         val formattedRecovered = NumberFormat.getNumberInstance(Locale.getDefault()).format(recovered.toDouble())
+        val formattedTodayCases = NumberFormat.getNumberInstance(Locale.getDefault()).format(todayCases.toDouble())
+        val formattedTodayDeaths = NumberFormat.getNumberInstance(Locale.getDefault()).format(todayDeaths.toDouble())
 
 
 
         total_confirmed_textView.text = getString(R.string.total_cases, formattedCases)
+        todays_confirmed.text = getString(R.string.today_cases, formattedTodayCases)
 
         critical_textView.text = getString(R.string.critical_info, formattedCritical)
 
-
         total_deaths_list_textView.text = getString(R.string.total_deaths_info, formattedDeaths)
+        todays_deaths.text = getString(R.string.today_deaths, formattedTodayDeaths)
 
         total_recovered_textView.text = getString(R.string.total_recovered_info, formattedRecovered)
     }
