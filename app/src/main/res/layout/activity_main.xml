@@ -20,6 +20,98 @@
         android:layout_height="50dp"
         android:iconifiedByDefault="false" />
 
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/globe" />
+
+            <TextView
+                android:id="@+id/global_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Global"
+                android:textColor="@color/myBlack"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/global_confirmed_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/totalconfirmed_list"
+                app:layout_constraintStart_toStartOf="@+id/global_label"
+                app:layout_constraintTop_toBottomOf="@+id/global_label" />
+
+            <TextView
+                android:id="@+id/global_confirmed_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/myYellow"
+                android:text="TextView"
+                app:layout_constraintBaseline_toBaselineOf="@+id/global_confirmed_label"
+                app:layout_constraintStart_toEndOf="@+id/global_confirmed_label"
+                tools:text="......" />
+
+            <TextView
+                android:id="@+id/global_deaths_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/total_deaths"
+                app:layout_constraintStart_toStartOf="@+id/global_confirmed_label"
+                app:layout_constraintTop_toBottomOf="@+id/global_confirmed_label" />
+
+            <TextView
+                android:id="@+id/global_deaths_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                android:textColor="@android:color/black"
+                app:layout_constraintBaseline_toBaselineOf="@+id/global_deaths_label"
+                app:layout_constraintStart_toEndOf="@+id/global_deaths_label"
+                tools:text="......." />
+
+            <TextView
+                android:id="@+id/global_recovered_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Total Recovered  "
+                app:layout_constraintStart_toStartOf="@+id/global_deaths_label"
+                app:layout_constraintTop_toBottomOf="@+id/global_deaths_label" />
+
+            <TextView
+                android:id="@+id/global_recovered_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                android:textColor="@color/myGreen"
+                app:layout_constraintBaseline_toBaselineOf="@+id/global_recovered_label"
+                app:layout_constraintStart_toEndOf="@+id/global_recovered_label"
+                tools:text="........" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"

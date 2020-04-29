@@ -3,47 +3,59 @@ package com.mariokirven.covidscore;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import Interfaz.CovApi;
 import model.CountryItem;
+import model.GlobalStats;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recycler_view;
     private MyAdapter myadapter;
     private SwipeRefreshLayout swipeContainer;
-
-
+    private TextView global_confirmed,global_deaths,global_recovered;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        global_confirmed = findViewById(R.id.global_confirmed_info);
+        global_deaths = findViewById(R.id.global_deaths_info);
+        global_recovered = findViewById(R.id.global_recovered_info);
+
         Toolbar myToolBar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolBar);
+
 
         // Lookup the swipe container view
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
@@ -62,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
 
 
         recycler_view = findViewById(R.id.recycler_view);
@@ -88,9 +101,47 @@ public class MainActivity extends AppCompatActivity {
 
         //List<CountryItem> countries = getCountries();
         getCountries();
+        getGlobalStats();
 
 
     }
+
+    private void getGlobalStats() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://disease.sh/v2/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        CovApi myCovApi = retrofit.create(CovApi.class);
+
+        Call<GlobalStats> call = myCovApi.getGlobalStatistics();
+        Log.e("myCode", "WE are Before the Onresponse ");
+
+        call.enqueue(new Callback<GlobalStats>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onResponse(@NotNull Call<GlobalStats> call, @NotNull Response<GlobalStats> response) {
+                GlobalStats myGlobalStats = response.body();
+                String formattedCases = NumberFormat.getNumberInstance(Locale.getDefault()).format(myGlobalStats.getCases());
+                String formattedDeaths = NumberFormat.getNumberInstance(Locale.getDefault()).format(myGlobalStats.getDeaths());
+                String formattedRecovered = NumberFormat.getNumberInstance(Locale.getDefault()).format(myGlobalStats.getRecovered());
+                global_confirmed.setText(formattedCases);
+                global_deaths.setText(formattedDeaths);
+                global_recovered.setText(formattedRecovered);
+
+                Log.e("myCode", "WE are Inside Global OnResponse " + response.code());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<GlobalStats> call, @NotNull Throwable t) {
+                Log.e("myCode", "WE are Inside Global Onfailure " + t.getMessage());
+
+            }
+        });
+
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

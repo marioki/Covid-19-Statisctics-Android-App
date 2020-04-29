@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import model.CountryDeathsHistoryItem;
 import model.CountryHistoryItem;
 import model.CountryItem;
+import model.GlobalStats;
 import retrofit2.Call;
 import retrofit2.http.GET;
 
@@ -18,6 +19,9 @@ public interface CovApi {
 
     @GET("status/deaths")
     Call<ArrayList<CountryDeathsHistoryItem>> getCountryDeathsHistoricalAll();
+
+    @GET("all/")
+    Call<GlobalStats> getGlobalStatistics();
 
 
 
