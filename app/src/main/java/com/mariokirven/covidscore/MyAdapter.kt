@@ -102,11 +102,14 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
         holder.cases.text = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.cases.toDouble())
         holder.deaths.text  = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.deaths.toDouble())
+        holder.deaths.text  = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.deaths.toDouble())
+        holder.recovered.text  = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.recovered.toDouble())
 
 
 
 
-        holder.date.text = getActualDate(currentItem.updated)
+
+        //holder.date.text = getActualDate(currentItem.updated)
 
         getCountryFlag(currentItem.countryInfo.iso2.toString(), holder.countryFlag)
 
@@ -216,8 +219,9 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         val countryName: TextView = itemView.country_name_textView
         val cases: TextView = itemView.cases_textView
         val deaths: TextView = itemView.deaths_list_info
-        val date: TextView = itemView.date_info_textView
+        //val date: TextView = itemView.date_info_textView
         val countryFlag: ImageView = itemView.country_flag_view
+        val recovered: TextView = itemView.total_recovered_list_info
 
 
     }

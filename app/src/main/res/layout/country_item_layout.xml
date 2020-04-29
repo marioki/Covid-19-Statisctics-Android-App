@@ -1,112 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/country_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_toEndOf="@+id/country_flag_view"
-            android:text="@string/country_list_name"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
             android:id="@+id/country_name_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/country_textView"
             android:text="..."
             android:textColor="@android:color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/total_confirmed_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/country_name_textView"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-
-            android:layout_toEndOf="@+id/country_flag_view"
-            android:text="@string/totalconfirmed_list"
-            android:textColor="@android:color/black"
-            android:textSize="14sp" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/country_flag_view"
+            app:layout_constraintTop_toBottomOf="@+id/total_deaths_list_textView" />
 
         <TextView
             android:id="@+id/cases_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/total_confirmed_textView"
             android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/total_confirmed_textView"
             android:text="..."
-            android:textColor="@android:color/holo_orange_dark"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/date_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/total_deaths_list_textView"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_toEndOf="@+id/country_flag_view"
-            android:text="@string/date_list"
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/date_info_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/date_textView"
-            android:layout_marginStart="8dp"
-            android:layout_toEndOf="@id/date_textView"
-            android:text="..."
-            android:textColor="@color/cardview_dark_background"
-            android:textSize="14sp" />
+            android:textColor="@color/myYellow"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/total_confirmed_textView"
+            app:layout_constraintStart_toEndOf="@id/total_confirmed_textView" />
 
         <ImageView
             android:id="@+id/country_flag_view"
             android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="@string/country_flag_description" />
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/country_flag_description"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/total_deaths_list_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/total_confirmed_textView"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_toEndOf="@+id/country_flag_view"
             android:text="@string/total_deaths"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@+id/country_flag_view"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/total_confirmed_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginStart="16dp"
+            android:text="@string/totalconfirmed_list"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/country_flag_view"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/deaths_list_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/total_deaths_list_textView"
             android:layout_marginStart="8dp"
-            android:layout_toEndOf="@+id/total_deaths_list_textView"
 
 
             android:text="..."
-            android:textColor="@android:color/holo_red_dark" />
+            android:textColor="@android:color/black"
+            app:layout_constraintBaseline_toBaselineOf="@id/total_deaths_list_textView"
+            app:layout_constraintStart_toEndOf="@+id/total_deaths_list_textView" />
 
-    </RelativeLayout>
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Total Recovered "
+            android:textColor="@android:color/black"
+            app:layout_constraintStart_toEndOf="@+id/country_flag_view"
+            app:layout_constraintTop_toBottomOf="@+id/total_confirmed_textView" />
+
+        <TextView
+            android:id="@+id/total_recovered_list_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="...."
+            android:textColor="@color/myGreen"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            tools:text="...." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

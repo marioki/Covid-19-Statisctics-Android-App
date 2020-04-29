@@ -18,6 +18,7 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="8dp"
         android:iconifiedByDefault="false" />
 
 
@@ -28,7 +29,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="16dp">
+            android:padding="4dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -42,30 +45,33 @@
                 android:id="@+id/global_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Global"
                 android:textColor="@color/myBlack"
-                android:textSize="18sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <TextView
                 android:id="@+id/global_confirmed_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/totalconfirmed_list"
-                app:layout_constraintStart_toStartOf="@+id/global_label"
-                app:layout_constraintTop_toBottomOf="@+id/global_label" />
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/global_confirmed_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:text="....."
                 android:textColor="@color/myYellow"
-                android:text="TextView"
+                android:textSize="12sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/global_confirmed_label"
                 app:layout_constraintStart_toEndOf="@+id/global_confirmed_label"
                 tools:text="......" />
@@ -74,18 +80,21 @@
                 android:id="@+id/global_deaths_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/total_deaths"
-                app:layout_constraintStart_toStartOf="@+id/global_confirmed_label"
-                app:layout_constraintTop_toBottomOf="@+id/global_confirmed_label" />
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/global_recovered_label" />
 
             <TextView
                 android:id="@+id/global_deaths_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
+                android:text="....."
                 android:textColor="@android:color/black"
+                android:textSize="12sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/global_deaths_label"
                 app:layout_constraintStart_toEndOf="@+id/global_deaths_label"
                 tools:text="......." />
@@ -94,18 +103,21 @@
                 android:id="@+id/global_recovered_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="Total Recovered  "
-                app:layout_constraintStart_toStartOf="@+id/global_deaths_label"
-                app:layout_constraintTop_toBottomOf="@+id/global_deaths_label" />
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/global_confirmed_label" />
 
             <TextView
                 android:id="@+id/global_recovered_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="TextView"
+                android:text="....."
                 android:textColor="@color/myGreen"
+                android:textSize="12sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/global_recovered_label"
                 app:layout_constraintStart_toEndOf="@+id/global_recovered_label"
                 tools:text="........" />
