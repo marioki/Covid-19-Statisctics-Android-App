@@ -32,6 +32,8 @@
             android:textColor="@color/myYellow"
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@id/total_confirmed_textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@id/total_confirmed_textView" />
 
         <ImageView
@@ -75,6 +77,8 @@
             android:text="..."
             android:textColor="@android:color/black"
             app:layout_constraintBaseline_toBaselineOf="@id/total_deaths_list_textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/total_deaths_list_textView" />
 
         <TextView
@@ -83,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="Total Recovered "
+            android:text="@string/global_total_recovered"
             android:textColor="@android:color/black"
             app:layout_constraintStart_toEndOf="@+id/country_flag_view"
             app:layout_constraintTop_toBottomOf="@+id/total_confirmed_textView" />
@@ -96,6 +100,8 @@
             android:text="...."
             android:textColor="@color/myGreen"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textView"
             tools:text="...." />
 

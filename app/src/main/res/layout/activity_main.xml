@@ -31,7 +31,8 @@
                 android:layout_height="64dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/globe" />
+                app:srcCompat="@drawable/globe"
+                android:contentDescription="Globe" />
 
             <TextView
                 android:id="@+id/global_label"
@@ -52,6 +53,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/totalconfirmed_list"
+                android:textColor="@android:color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,6 +77,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/total_deaths"
+                android:textColor="@android:color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/global_recovered_label" />
@@ -97,7 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:text="Total Recovered  "
+                android:text="@string/global_total_recovered"
+                android:textColor="@android:color/black"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/global_confirmed_label" />

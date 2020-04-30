@@ -8,7 +8,7 @@
     <string name="country_code">Código de País</string>
     <string name="country_flag_description">Bandera</string>
     <string name="country_list_name">País:</string>
-    <string name="totalconfirmed_list">Casos Confirmados:</string>
+    <string name="totalconfirmed_list">Confirmados:</string>
     <string name="date_list">Fecha:</string>
     <string name="critical_info">Casos Críticos: %1s</string>
     <string name="total_deaths_info">Defunciones: %1s</string>
@@ -24,4 +24,7 @@
     <string name="countryDetails_activity_title">Detalles del País</string>
     <string name="today_cases">(Hoy): %1s</string>
     <string name="today_deaths">(Hoy): %1s</string>
+    <string name="chart_total_deaths">Total de Defunciones (Acumulado)</string>
+    <string name="chart_number_of_deaths">Cantidad de Defunciones</string>
+    <string name="global_total_recovered">Recuperados</string>
 </resources>

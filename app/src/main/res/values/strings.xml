@@ -3,12 +3,12 @@
 
     <string name="total_cases">Total Cases: %1s</string>
     <string name="critical_cases">Critical Cases: %1s</string>
-    <string name="total_deaths">Total Deaths: </string>
+    <string name="total_deaths">Deaths: </string>
     <string name="total_recovered">Total Recovered: %1s</string>
     <string name="country_code">Country Code</string>
     <string name="country_flag_description">Country Flag</string>
     <string name="country_list_name">Country:</string>
-    <string name="totalconfirmed_list">Total Confirmed:</string>
+    <string name="totalconfirmed_list">Confirmed:</string>
     <string name="date_list">Date:</string>
     <string name="cases_info" translatable="false">...</string>
     <string name="critical_info">Critical Cases: %1s</string>
@@ -32,6 +32,9 @@
     <string name="countryDetails_activity_title">Country Details</string>
     <string name="today_cases">(Today): %1s</string>
     <string name="today_deaths">(Today): %1s</string>
+    <string name="chart_total_deaths">Total Deaths (Accumulated)</string>
+    <string name="chart_number_of_deaths">Number Of Deaths</string>
+    <string name="global_total_recovered">Recovered</string>
 
 
     <!--    <string name="222">333</string>-->

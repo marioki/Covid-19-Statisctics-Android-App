@@ -148,9 +148,10 @@ class CountryDetails : AppCompatActivity() {
 
         cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
 
-        cartesian.title("Total Deaths")
 
-        cartesian.yAxis(0).title("Number of Deaths")
+        cartesian.title(getString(R.string.chart_total_deaths))
+
+        cartesian.yAxis(0).title(getString(R.string.chart_number_of_deaths))
         cartesian.xAxis(0).labels().padding(5.0, 5.0, 5.0, 5.0)
 
         val seriesData: MutableList<DataEntry> = ArrayList()
@@ -209,7 +210,9 @@ class CountryDetails : AppCompatActivity() {
 //        cartesian.legend().enabled(true)
 //        cartesian.legend().fontSize(13.0)
 //        cartesian.legend().padding(0.0, 0.0, 10.0, 0.0)
-//
+        val black = "#273746"
+
+        cartesian.palette(arrayOf(black))
         anyChartView.setChart(cartesian)
 
 
