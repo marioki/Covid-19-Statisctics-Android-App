@@ -1,6 +1,5 @@
 package com.mariokirven.covidscore
 
-import model.CountryItem
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -13,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.country_item_layout.view.*
+import model.CountryItem
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -35,7 +35,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
                 } else {
                     val resultList = ArrayList<CountryItem>()
                     for (item in exampleList) {
-                        if (item.country.toString().toLowerCase().contains(charSearch.toLowerCase(Locale.ROOT))) {
+                        if (item.country.toString().toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             val newCountryItem = CountryItem(item.active, item.cases
                                     , item.casesPerOneMillion, item.country, item.countryInfo
                                     , item.critical, item.deaths, item.deathsPerOneMillion
@@ -72,8 +72,6 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         return ItemViewHolder(itemView)
 
 
-
-
     }//End of On Create View Holder
 
     private fun hearOnClick(itemView: View?) {
@@ -88,7 +86,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
 
     // Add a list of items -- change to type used
     fun addAll(list: List<CountryItem>) {
-        countryFilterList =exampleList
+        countryFilterList = exampleList
         notifyDataSetChanged()
     }
 
@@ -101,12 +99,9 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         holder.countryName.text = currentItem.country
 
         holder.cases.text = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.cases.toDouble())
-        holder.deaths.text  = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.deaths.toDouble())
-        holder.deaths.text  = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.deaths.toDouble())
-        holder.recovered.text  = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.recovered.toDouble())
-
-
-
+        holder.deaths.text = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.deaths.toDouble())
+        holder.deaths.text = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.deaths.toDouble())
+        holder.recovered.text = NumberFormat.getNumberInstance(Locale.getDefault()).format(currentItem.recovered.toDouble())
 
 
         //holder.date.text = getActualDate(currentItem.updated)
@@ -219,6 +214,7 @@ class MyAdapter(private val exampleList: List<CountryItem>) : RecyclerView.Adapt
         val countryName: TextView = itemView.country_name_textView
         val cases: TextView = itemView.cases_textView
         val deaths: TextView = itemView.deaths_list_info
+
         //val date: TextView = itemView.date_info_textView
         val countryFlag: ImageView = itemView.country_flag_view
         val recovered: TextView = itemView.total_recovered_list_info

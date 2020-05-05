@@ -3,12 +3,10 @@ package com.mariokirven.covidscore;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
@@ -43,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recycler_view;
     private MyAdapter myadapter;
     private SwipeRefreshLayout swipeContainer;
-    private TextView global_confirmed,global_deaths,global_recovered;
+    private TextView global_confirmed, global_deaths, global_recovered;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
-
 
 
         recycler_view = findViewById(R.id.recycler_view);
@@ -122,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull Call<GlobalStats> call, @NotNull Response<GlobalStats> response) {
                 GlobalStats myGlobalStats = response.body();
+                assert myGlobalStats != null;
                 String formattedCases = NumberFormat.getNumberInstance(Locale.getDefault()).format(myGlobalStats.getCases());
                 String formattedDeaths = NumberFormat.getNumberInstance(Locale.getDefault()).format(myGlobalStats.getDeaths());
                 String formattedRecovered = NumberFormat.getNumberInstance(Locale.getDefault()).format(myGlobalStats.getRecovered());
@@ -202,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getCountriesRefresh() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://corona.lmao.ninja/v2/")
+                .baseUrl("https://disease.sh/v2/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

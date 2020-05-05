@@ -24,6 +24,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_country_details.*
 import model.CountryDeathsHistoryItem
 import model.CountryHistoryItem
+import model.DayByDayItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -77,7 +78,7 @@ class CountryDetails : AppCompatActivity() {
         getCountryFlag(countryInfoIso2.toLowerCase(Locale.ROOT))
 
         //Set infromation into the text views
-        setCountryStats(country, countryInfoIso2, cases, critical, deaths, recovered,todayCases, todayDeaths)
+        setCountryStats(country, countryInfoIso2, cases, critical, deaths, recovered, todayCases, todayDeaths)
 
         //Generate pie Chart
         setCharts(any_chart_view_pie, active, critical, deaths, recovered, cases)
@@ -271,6 +272,7 @@ class CountryDetails : AppCompatActivity() {
 
                 if (myCountryHistoryArrayList != null) {
                     setColumnChart(columnAnyChartView, myCountryHistoryArrayList)
+                    calculateDayByDay(myCountryHistoryArrayList)
                 }
 
                 Log.e("myCode", "WE are Inside History OnResponse  " + response.code())
@@ -282,6 +284,23 @@ class CountryDetails : AppCompatActivity() {
                 Log.e("myCode", "WE are Inside History Onfailure " + t.message)
             }
         })
+
+    }
+
+    private fun calculateDayByDay(myCountryHistoryArrayList: java.util.ArrayList<CountryHistoryItem>) {
+        val dayByDayItem: ArrayList<Int> = ArrayList()
+        val size = myCountryHistoryArrayList.size
+
+        for (i in myCountryHistoryArrayList.indices) {
+            if (i <= size - 2) {
+                val newCases = myCountryHistoryArrayList[i + 1].cases - myCountryHistoryArrayList[i].cases
+                dayByDayItem.add(newCases)
+                //println(myCountryHistoryArrayList[i])
+                // println(dayByDayItem[i])
+            }
+        }
+
+        setDayByDayCasesCaloumnChart(dayByDayItem)
 
     }
 
@@ -385,9 +404,55 @@ class CountryDetails : AppCompatActivity() {
         columnAnyChartView.setChart(cartesian)
     }
 
+
+    fun setDayByDayCasesCaloumnChart( dayByDayArray: ArrayList<Int>){
+        val byDayChart = any_chart_view_day_by_day
+        APIlib.getInstance().setActiveAnyChartView(byDayChart)
+
+        byDayChart.setProgressBar(findViewById(R.id.collumnIndeterminateBarDayByDay))
+
+        val cartesian: Cartesian = AnyChart.column()
+
+        val data: MutableList<DataEntry> = ArrayList()
+
+        for (i in dayByDayArray) {
+            data.add(ValueDataEntry(dayByDayArray.indexOf(i),i))
+        }
+        println(data)
+
+
+        val column: Column = cartesian.column(data)
+
+        column.tooltip()
+                .titleFormat("{%X}")
+                .position(Position.CENTER_BOTTOM)
+                .anchor(Anchor.CENTER_BOTTOM)
+                .offsetX(0.0)
+                .offsetY(5.0)
+                .format("{%Value}{groupsSeparator: }")
+
+        cartesian.animation(true)
+        cartesian.title(getString(R.string.confirmed_cases_curve))
+
+        cartesian.yScale().minimum(0.0)
+
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }")
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT)
+        cartesian.interactivity().hoverMode(HoverMode.BY_X)
+
+        cartesian.xAxis(0).title(getString(R.string.time_label))
+        cartesian.yAxis(0).title(getString(R.string.number_of_cases_label))
+
+        cartesian.xAxis(0).labels().rotation()
+
+        byDayChart.setChart(cartesian)
+
+    }
+
     private fun setCountryStats(country: String, countryInfoIso2: String, cases: String,
                                 critical: String, deaths: String, recovered: String,
-                                todayCases: String, todayDeaths:String) {
+                                todayCases: String, todayDeaths: String) {
         country_name_textView.text = country
         country_code_textView.text = countryInfoIso2
 
